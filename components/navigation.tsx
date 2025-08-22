@@ -15,13 +15,14 @@ const navigation = [
 export default function Navigation() {
     const path = usePathname()
     const isDashboard = path.startsWith("/dashboard")
+    const isSignIn = path.startsWith("/sign-in")
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
         <>
             {
-                isDashboard ?
+                isDashboard || isSignIn ?
                 <div></div>
                 :
                 <header className="absolute inset-x-0 top-5 z-50 bg-black/50 w-11/12 mx-auto rounded-full">

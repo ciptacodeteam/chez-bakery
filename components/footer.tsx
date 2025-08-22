@@ -10,11 +10,12 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
     const path = usePathname()
     const isDashboard = path.startsWith("/dashboard")
+    const isSignIn = path.startsWith("/sign-in")
 
     return (
         <>
             {
-                isDashboard ?
+                isDashboard || isSignIn ?
                 <div></div>
                 :
                 <footer className="mt-20 mb-10 w-11/12 mx-auto">

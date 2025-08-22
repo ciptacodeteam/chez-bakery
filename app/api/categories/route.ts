@@ -1,4 +1,6 @@
+import prisma from "@/lib/prisma"
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { put } from "@vercel/blob";
 
 export async function POST(req: Request) {
     const { userId } = await auth()
@@ -10,9 +12,23 @@ export async function POST(req: Request) {
     const user = await currentUser()
     const data = await req.formData()
 
-    console.log(data)
+    const blob = await put(`images/categories/${(data.get("categoryImage") as File).name}`, data.get("categoryImage") as File, {
+        access: "public"
+    })
 
-    // const createCategory = await
+    const createCategory = await prisma.categories.create({
+        data: {
+            categoryName: data.get("categoryName") as string,
+            categoryImage: blob.url,
+            createdBy: `${user?.firstName} ${user?.lastName}`
+        }
+    })
 
     return Response.json({ success: true, message: "New category successfully created."}, { status: 201 })
+}
+
+export async function GET() {
+    const categories = await prisma.categories.findMany()
+
+    return Response.json({ success: false, categories }, { status: 200 })
 }

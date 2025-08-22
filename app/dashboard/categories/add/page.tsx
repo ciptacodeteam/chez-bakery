@@ -3,16 +3,18 @@
 import { fetchAPI } from "@/lib/apiClient"
 import { validateCategoryForm } from "@/lib/formValidation"
 import clsx from "clsx"
-import { error } from "console"
+import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 
 export default function AddCategory() {
+    const router = useRouter()
+
     const [ isLoading, setIsLoading ] = useState<boolean>(false)
     const [ errors, setErrors ] = useState<Record<string, string>>({})
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         setIsLoading(true)
-        
+
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget)
@@ -27,9 +29,13 @@ export default function AddCategory() {
 
         const data = await fetchAPI("/api/categories", "POST", formData)
 
-        if (data.success) {
+        console.log(data)
 
+        if (data.success) {
+            router.push("/dashboard/categories")
         }
+
+        setIsLoading(false)
     }
 
     return (
@@ -57,6 +63,21 @@ export default function AddCategory() {
                             </div>
                         </dl>
 
+                        <dl className="divide-y divide-gray-100">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm/6 font-medium text-gray-900">Category Image</dt>
+                                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    <input
+                                        id="categoryImage"
+                                        name="categoryImage"
+                                        type="file"
+                                        accept="image/jpeg, .jpg, .jpeg, .png"
+                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.categoryImage === undefined ? "border-gray-300" : "border-red-500")}
+                                    />
+                                    { errors.categoryImage && <p className="text-red-500 text-xs mt-1">{errors.categoryImage}</p>}
+                                </dd>
+                            </div>
+                        </dl>
                         <button
                             type="submit"
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ml-4 mt-5"

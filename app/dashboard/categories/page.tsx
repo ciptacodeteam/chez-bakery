@@ -1,10 +1,27 @@
+"use client"
+
+import { fetchAPI } from "@/lib/apiClient"
+import { Category } from "@/lib/interface"
+
 import Link from "next/link"
 
+import { useEffect, useState } from "react"
+
 export default function Categories() {
-    const people = [
-        { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-        // More people...
-    ]
+    const [ categories, setCategories ] = useState<Category[]>([])
+
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
+
+    const load = async () => {
+        const data = await fetchAPI("/api/categories", "GET")
+
+        setCategories(data.categories)
+        setIsLoading(false)
+    }
+
+    useEffect(() => {
+        load()
+    }, [])
 
     return (
         <>
@@ -36,7 +53,7 @@ export default function Categories() {
                                     Category Name
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    Created On
+                                    Category Image
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     Updated By
@@ -50,20 +67,23 @@ export default function Categories() {
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                            {people.map((person) => (
-                                <tr key={person.email}>
-                                <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-6">
-                                    {person.name}
-                                </td>
-                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.title}</td>
-                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.email}</td>
-                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{person.role}</td>
-                                <td className="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                    Edit<span className="sr-only">, {person.name}</span>
-                                    </a>
-                                </td>
-                                </tr>
+                            {
+                                categories.map((category, index) => (
+                                    <tr key={index}>
+                                        <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-6">
+                                            {category.categoryName}
+                                        </td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                            <img src={category.categoryImage} width={100} height={100} alt="category" />
+                                        </td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{category.updatedBy === undefined ? "-" : category.updatedBy}</td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{category.updatedAt === undefined ? "" : category.updatedAt}</td>
+                                        <td className="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
+                                            <Link href={`/dashboard/categories/${category.id}`}className="text-indigo-600 hover:text-indigo-900">
+                                            Edit<span className="sr-only"></span>
+                                            </Link>
+                                        </td>
+                                    </tr>
                             ))}
                             </tbody>
                         </table>

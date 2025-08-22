@@ -9,10 +9,7 @@ import momentTwo from "@/public/images/moment-2.jpg"
 import momentThree from "@/public/images/moment-3.jpg"
 import momentFour from "@/public/images/moment-4.jpg"
 import momentFive from "@/public/images/moment-5.jpg"
-import footer from "@/public/images/footer.jpg"
 import founder from "@/public/images/founder.jpeg"
-
-import { MapPinIcon, PhoneIcon, ClockIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
@@ -21,7 +18,7 @@ export default function Home() {
       <div className="pt-36 pb-40 bg-[url(/images/hero-mobile.jpeg)] bg-cover">
         <div className="mt-32 w-11/12 mx-auto">
           <div className="text-white">
-            <h1 className="text-5xl font-semibold">Baked with Love, <br /> Served With Joy</h1>
+            <h1 className="text-4xl font-semibold">Baked with Love, <br /> Served With Joy</h1>
             <p className="w-9/12 text-xs mt-2">From flaky pastry to decadent custom cakes - made fresh daily, just for you.</p>
           </div>
 
@@ -110,7 +107,7 @@ export default function Home() {
           <h1 className="mb-10">CHEZ</h1>
           <div>
             <h1 className="text-3xl">Ready to Order?</h1>
-            <p className="mt-2 mb-10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p className="mt-2 mb-10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             <Link href="" className="bg-amber-700 px-4 py-3 rounded-full text-white">Order Now &rarr;</Link>
           </div>
         </div>

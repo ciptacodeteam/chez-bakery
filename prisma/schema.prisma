@@ -18,6 +18,7 @@ model Categories {
   id                  String        @id @default(uuid())
   categoryName        String
   categoryImage       String      
+  menus               Menus[]
   isActive            Boolean       @default(true)
   createdAt           DateTime      @default(now())
   createdBy           String
@@ -31,7 +32,11 @@ model Menus {
   menuDescription     String?
   price               Int
   menuImage           String?
-  isFavourite         Boolean       @default(false)     
+  isFavourite         Boolean       @default(false)
+  
+  categoryId          String
+  category            Categories    @relation(fields: [categoryId], references: [id])
+
   isActive            Boolean       @default(true)
   createdAt           DateTime      @default(now())
   createdBy           String

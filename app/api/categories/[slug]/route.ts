@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { currentDateTime } from "@/lib/utils";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { put, del } from "@vercel/blob";
+import { put, del, head } from "@vercel/blob";
 
 export async function GET(req: Request) {
     const { userId } = await auth()
@@ -33,17 +33,17 @@ export async function PUT(req: Request) {
     const categoryId = req.url.split("/")[5]
     const data = await req.formData()
 
-    let blob
+    let blobUrl
 
-    // Find out why the prevCategoryImage is null
-    console.log(data.get("prevCategoryImage"))
+    if ((data.get("categoryImage") as File).size !== 0) {
+        const deleteBlob = await del(data.get("prevImageUrl") as string)
 
-    if ((data.get("categoryImage") as File).size !== 5) {
-        const deleteBlob = await del(data.get("prevCategoryImage") as string)
-
-        blob = await put(`/images/categories/${(data.get("categoryImage") as File).name}`, data.get("categoryImage") as File, {
-            access: "public"
+        const blob = await put(`/images/categories/${(data.get("categoryImage") as File).name}`, data.get("categoryImage") as File, {
+            access: "public",
+            addRandomSuffix: true
         })
+
+        blobUrl = blob.url
     }
 
     const updateCategory = await prisma?.categories.update({
@@ -52,7 +52,7 @@ export async function PUT(req: Request) {
         },
         data: {
             categoryName: data.get("categoryName") as string,
-            categoryImage: blob === null ? data.get("prevCategoryImage") as string : blob!.url as string,
+            categoryImage: blobUrl === null ? data.get("prevImageUrl") as string : blobUrl,
             updatedAt: currentDateTime(),
             updatedBy: `${user?.firstName} ${user?.lastName}`
         }

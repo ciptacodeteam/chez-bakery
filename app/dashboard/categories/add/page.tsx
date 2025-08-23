@@ -29,8 +29,6 @@ export default function AddCategory() {
 
         const data = await fetchAPI("/api/categories", "POST", formData)
 
-        console.log(data)
-
         if (data.success) {
             router.push("/dashboard/categories")
         }

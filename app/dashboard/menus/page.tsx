@@ -1,3 +1,10 @@
+"use client"
+
+import { fetchAPI } from "@/lib/apiClient"
+import { Category, Menu } from "@/lib/interface"
+
+import { useEffect, useState } from "react"
+
 export default function Menus() {
     const files = [
         {
@@ -27,14 +34,44 @@ export default function Menus() {
         // More files...
     ]
 
+    const [ storage, setStorage ] = useState<Record<string, Menu[]>>({})
+
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
+
+    const load = async () => {
+        const data = await fetchAPI("/api/menus", "GET")
+
+        groupMenuByCategory(data.categories, data.menus)
+        setIsLoading(false)
+    }
+
+    const groupMenuByCategory = (categories: Category[], menus: Menu[]) => {
+        const result: Record<string, Menu[]> = {}
+
+        for (const category of categories) {
+            const categoryMenu = menus.filter((menu) => menu.categoryId === category.id)
+
+            result[`${category.categoryName}`] = categoryMenu
+        }
+
+        setStorage(result)
+    }
+
+    useEffect(() => {
+        load()
+    }, [])
+
     return (
         <>
-            <h1>Menu</h1>
+            <h1 className="font-semibold">Menu</h1>
             <p>List of all of your bakery's menu here.</p>
 
+            {/* Filter condition */}
+            
+
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                {files.map((file) => (
-                    <li key={file.source} className="relative">
+                {files.map((file, index) => (
+                    <li key={index} className="relative">
                     <div className="group overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
                         <img
                         alt=""

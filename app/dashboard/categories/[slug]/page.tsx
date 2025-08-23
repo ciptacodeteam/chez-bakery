@@ -4,19 +4,18 @@ import { fetchAPI } from "@/lib/apiClient"
 import { Category } from "@/lib/interface"
 import { validateCategoryForm } from "@/lib/formValidation"
 
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 
 import clsx from "clsx"
-
-import { head } from "@vercel/blob"
 
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function CategoryDetails() {
     const path = usePathname()
+    const router = useRouter()
 
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isLoadingSubmit, setIsLoadingSubmit ] = useState<boolean>(false)
@@ -45,16 +44,10 @@ export default function CategoryDetails() {
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget)
+        
+        formData.append("prevImageUrl", category.categoryImage)
 
-        // If the image is not updated by the user (i.e. file input tag is empty)
-        if ((formData.get("categoryImage") as File).size === 0) {
-            const placeholderFile = new File(["image"], "image") // only to pass validation if the user doesn't update the image
-
-            formData.set("prevCategoryImage", category.categoryImage)
-            formData.set("categoryImage", placeholderFile)
-        }
-
-        const { valid, errors } = validateCategoryForm(formData)
+        const { valid, errors } = validateCategoryForm(formData, "PUT")
 
         if (!valid) {
             setErrors(errors)
@@ -65,7 +58,7 @@ export default function CategoryDetails() {
         const data = await fetchAPI(`/api/categories/${category.id}`, "PUT", formData)
 
         if (data.success) {
-
+            router.push("/dashboard/categories")
         }
 
         setIsLoadingSubmit(false)
@@ -144,7 +137,7 @@ export default function CategoryDetails() {
                             type="submit"
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ml-4 mt-5"
                         >
-                            { isLoading ? "Submitting..." : "Create New Category" }
+                            { isLoadingSubmit ? "Submitting..." : "Create New Category" }
                         </button>
                     </form>
                 </div>

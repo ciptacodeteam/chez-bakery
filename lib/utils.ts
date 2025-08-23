@@ -9,3 +9,13 @@ export function currentDateTime() {
 
     return `${year}-${month}-${day}T${time}`
 }
+
+export function dateTransform(isoDate: string) {
+    const monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+    const d = isoDate.split("T")[0]
+    
+    const [ year, month, date ] = d.split("-")
+
+    return `${monthName[parseInt(month) - 1]} ${date}, ${year}`
+}

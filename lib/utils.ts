@@ -1,3 +1,5 @@
+import { Category, Menu } from "./interface"
+
 export function currentDateTime() {
     const date = new Date()
 
@@ -19,3 +21,20 @@ export function dateTransform(isoDate: string) {
 
     return `${monthName[parseInt(month) - 1]} ${date}, ${year}`
 }
+
+export const groupMenuByCategory = (categories: Category[], menus: Menu[]) => {
+        const result: Record<string, Menu[] | string>[] = []
+
+        for (const category of categories) {
+            const temp: Record<string, Menu[] | string> = {} 
+
+            const categoryMenu = menus.filter((menu) => menu.categoryId === category.id)
+
+            temp.categoryName = category.categoryName
+            temp.categoryMenu = categoryMenu
+
+            result.push(temp)
+        }
+
+        return result
+    }

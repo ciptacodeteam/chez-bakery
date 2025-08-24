@@ -1,9 +1,10 @@
 "use client"
 
 import { fetchAPI } from "@/lib/apiClient"
-import { Category, Menu } from "@/lib/interface"
+import { Menu } from "@/lib/interface"
+import { groupMenuByCategory } from "@/lib/utils"
 
-import { useEffect, useState } from "react"
+import { MouseEvent, useEffect, useState } from "react"
 
 export default function Menus() {
     const files = [
@@ -34,27 +35,31 @@ export default function Menus() {
         // More files...
     ]
 
-    const [ storage, setStorage ] = useState<Record<string, Menu[]>>({})
+    const [ storage, setStorage ] = useState<Record<string, Menu[] | string>[]>([])
+
+    const [ selectedMenus, setSelectedMenus ] = useState<Menu[]>([])
 
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
 
     const load = async () => {
         const data = await fetchAPI("/api/menus", "GET")
 
-        groupMenuByCategory(data.categories, data.menus)
+        const categoryMenu = groupMenuByCategory(data.categories, data.menus)
+
+        setStorage(categoryMenu)
+        setSelectedMenus(categoryMenu[0].categoryMenu as Menu[])
         setIsLoading(false)
     }
 
-    const groupMenuByCategory = (categories: Category[], menus: Menu[]) => {
-        const result: Record<string, Menu[]> = {}
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+        const category = e.currentTarget.id
 
-        for (const category of categories) {
-            const categoryMenu = menus.filter((menu) => menu.categoryId === category.id)
-
-            result[`${category.categoryName}`] = categoryMenu
+        for (const s of storage) {
+            if (s.categoryName === category) {
+                setSelectedMenus(s.categoryMenu as Menu[])
+                break
+            }
         }
-
-        setStorage(result)
     }
 
     useEffect(() => {
@@ -67,24 +72,30 @@ export default function Menus() {
             <p>List of all of your bakery's menu here.</p>
 
             {/* Filter condition */}
+            <div className="flex">
+                {
+                    storage.map((s: Record<string, Menu[] | string>, index) => (
+                        <button key={index} id={s.categoryName as string} className="bg-blue-100 px-4 py-2 mr-3 rounded-full text-xs" onClick={handleClick}>{s.categoryName as string}</button>
+                    ))
+                }
+            </div>
             
 
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                {files.map((file, index) => (
-                    <li key={index} className="relative">
-                    <div className="group overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-                        <img
-                        alt=""
-                        src={file.source}
-                        className="pointer-events-none aspect-10/7 object-cover group-hover:opacity-75"
-                        />
-                        <button type="button" className="absolute inset-0 focus:outline-hidden">
-                        <span className="sr-only">View details for {file.title}</span>
-                        </button>
-                    </div>
-                    <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{file.title}</p>
-                    <p className="pointer-events-none block text-sm font-medium text-gray-500">{file.size}</p>
-                    </li>
+                {
+                    selectedMenus.map((menu, index) => (
+                        <li key={index} className="relative">
+                            <div className="group overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                                <img
+                                alt=""
+                                src={menu.menuImage}
+                                className="pointer-events-none aspect-10/7 object-cover group-hover:opacity-75"
+                                />
+                            </div>
+                            <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">{menu.menuName}</p>
+                            <p className="pointer-events-none block text-xs font-medium text-gray-500">{menu.menuDescription}</p>
+                            <p className="pointer-events-none block text-sm font-medium text-gray-500">Rp. {menu.price.toLocaleString()}</p>
+                        </li>
                 ))}
             </ul>
         </>

@@ -28,6 +28,12 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
+    const { userId } = await auth()
+
+    if (!userId) {
+        return Response.json({ success: false, message: "Unauthenticated." }, { status: 401 })
+    }
+
     const categories = await prisma.categories.findMany()
 
     return Response.json({ success: false, categories }, { status: 200 })

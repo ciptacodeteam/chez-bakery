@@ -29,9 +29,9 @@ model Categories {
 model Menus {
   id                  String        @id @default(uuid())
   menuName            String
-  menuDescription     String?
+  menuDescription     String
   price               Int
-  menuImage           String?
+  menuImage           String
   isFavourite         Boolean       @default(false)
   
   categoryId          String

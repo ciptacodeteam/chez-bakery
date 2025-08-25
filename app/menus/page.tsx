@@ -1,9 +1,33 @@
+"use client"
+
+import { fetchAPI } from "@/lib/apiClient"
 import sample from "@/public/images/sample.jpg"
 
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Menu() {
+import { Menu } from "@/lib/interface"
+
+import { useEffect, useState } from "react"
+
+export default function MenuPage() {
+    const [ storage, setStorage ] = useState<Record<string, Menu[] | string>[]>()
+
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
+
+    const load = async () => {
+        const data = await fetchAPI("/api/menus", "GET")
+
+        console.log(data)
+
+        setStorage(data.categoryMenus)
+        setIsLoading(false)      
+    }
+
+    useEffect(() => {
+        load()
+    }, [])
+
     return (
         <>
             {/* Hero */}
@@ -27,27 +51,39 @@ export default function Menu() {
             {/* Categories & Menus */}
             <div>
                 {/* Category Section */}
-                <div className="bg-[url(/images/moment-1.jpg)] bg-cover h-[250px]">
-                    <div className="bg-black/50 w-full h-full flex justify-center items-center">
-                        <h1 className="text-white font-bold text-3xl text-center">This is the Category of the menus</h1>
-                    </div>
-                </div>
-
-                {/* Menu Section */}
-                <div className="py-20 w-11/12 mx-auto">
-                    <div className="flex items-center">
-                        <Image src={sample} alt="sample" width={70} height={70} className="mr-3"/>
-
-                        <div>
-                            <div className="flex justify-between">
-                                <h3 className="text-lg font-semibold">SALMON TARTARE</h3>
-                                <p className="text-lg font-semibold">$23</p>
+                {
+                    storage?.map((s: Record<string, Menu[] | string>, index) => (
+                        <div key={index}>
+                            <div className={`bg-cover h-[250px]`} style={{ backgroundImage: `url(${s.categoryImage})` }}>
+                                <div className="bg-black/50 w-full h-full flex justify-center items-center">
+                                    <h1 className="text-white font-bold text-3xl text-center">{s.categoryName as string}</h1>
+                                </div>
                             </div>
 
-                            <p className="mt-2 text-sm">Fennel, citrus & herb yogourt. Served with fries and/or salad</p>
+                            {/* Menu Section */}
+                            <div className="py-20 w-11/12 mx-auto">
+                                {
+                                    (s.categoryMenu as Menu[]).map((menu: Menu, index) => (
+                                        <div key={index} className="my-10">
+                                            <div className="flex items-center">
+                                                <Image src={menu.menuImage} alt="sample" width={70} height={70} className="mr-3 aspect-square rounded-xl" unoptimized/>
+
+                                                <div>
+                                                    <div className="flex justify-between">
+                                                        <h3 className="text-lg font-semibold">SALMON TARTARE</h3>
+                                                        <p className="text-lg font-semibold">$23</p>
+                                                    </div>
+
+                                                    <p className="mt-1 text-sm">Fennel, citrus & herb yogourt. Served with fries and/or salad</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    ))
+                }
             </div>
 
             {/*  */}

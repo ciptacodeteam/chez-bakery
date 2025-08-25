@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-quicksand {
+  font-family: var(--font-quicksand);
+}

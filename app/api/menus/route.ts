@@ -1,6 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { put } from "@vercel/blob";
+import { groupMenuByCategory } from "@/lib/utils";
+import { Menu } from "@/lib/interface";
 
 export async function POST(req: Request) {
     const { userId } = await auth()
@@ -32,19 +34,33 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-    const { userId } = await auth()
-
-    if (!userId) {
-        return Response.json({ success: false, message: "Unauthenticated." }, { status: 401 })
-    }
-
-    const menus = await prisma.menus.findMany()
+    const menus = await prisma.menus.findMany({
+        select: {
+            id: true,
+            menuName: true,
+            menuDescription: true,
+            price: true,
+            menuImage: true,
+            isFavourite: true,
+            isActive: true,
+            categoryId: true,
+            category: {
+                select: {
+                    categoryName: true,
+                }
+            }
+        },
+    })
     const categories = await prisma.categories.findMany({
         select: {
             id: true,
-            categoryName: true
+            categoryName: true,
+            categoryImage: true,
+            isActive: true
         }
     })
 
-    return Response.json({ success: true, menus, categories }, { status: 200 })
+    const categoryMenus = groupMenuByCategory(categories, menus)
+
+    return Response.json({ success: true, menus, categories, categoryMenus }, { status: 200 })
 }

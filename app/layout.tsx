@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Libre_Baskerville, Quicksand } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const libre = Libre_Baskerville({ 
+  subsets: ['latin'], 
+  weight: ['400', '700'], 
+  variable: '--font-libre' 
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const quicksand = Quicksand({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '700'], 
+  variable: '--font-quicksand'
 });
 
 export const metadata: Metadata = {
@@ -29,11 +31,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${libre.variable} ${quicksand.variable} antialiased`}
           suppressHydrationWarning
+          style={{ fontFamily: "var(--font-libre )" }}
         >
           <Navigation />
-            <main>
+            <main >
               {children}
             </main>
           <Footer />

@@ -10,6 +10,7 @@ import momentThree from "@/public/images/moment-3.jpg"
 import momentFour from "@/public/images/moment-4.jpg"
 import momentFive from "@/public/images/moment-5.jpg"
 import founder from "@/public/images/founder.jpeg"
+import chez from "@/public/images/chez-logo.jpg"
 
 export default function Home() {
   return (
@@ -18,13 +19,13 @@ export default function Home() {
       <div className="pt-36 pb-40 bg-[url(/images/hero-mobile.jpeg)] bg-cover">
         <div className="mt-32 w-11/12 mx-auto">
           <div className="text-white">
-            <h1 className="text-4xl font-semibold">Baked with Love, <br /> Served With Joy</h1>
-            <p className="w-9/12 text-xs mt-2">From flaky pastry to decadent custom cakes - made fresh daily, just for you.</p>
+            <h1 className="text-5xl font-semibold">From Chez, <br /> with Love</h1>
+            <p className="w-9/12 text-sm mt-2 font-base" style={{ fontFamily: "var(--font-quicksand)" }}>Crafted with passion, served with care, and delivered to delight every bite.</p>
           </div>
 
           <div className="text-xs mt-10">
-            <Link href="" className="bg-amber-700 text-white px-4 py-2 rounded-full mr-3">View Menu</Link>
-            <Link href="" className="border border-white px-4 py-2 rounded-full text-white">Place an Order</Link>
+            <Link href="" className="bg-[#304428] text-white px-5 py-3 rounded-full mr-3 border border-[#304428]">View Menu</Link>
+            <Link href="" className="border border-white px-5 py-3 rounded-full text-white">Place an Order</Link>
           </div>
         </div>
       </div>
@@ -33,8 +34,8 @@ export default function Home() {
       <div className="w-11/12 mx-auto my-20">
         <div>
           <div className="">
-            <h1 className="text-3xl">A Taste of Veluora</h1>
-            <p className="mt-2 text-slate-600">Crafted in small batches. Always fresh. Always unforgettable.</p>
+            <h1 className="text-3xl font-semibold text-[#304428]">A Taste of Chez</h1>
+            <p className="mt-2 text-slate-100" style={{ fontFamily: "var(--font-quicksand)" }}>Crafted in small batches. Always fresh. Always unforgettable.</p>
           </div>
 
           <Link href="" className="border border-amber-700 px-4 py-2 rounded-full text-amber-700 hidden">View Menu</Link>
@@ -53,9 +54,9 @@ export default function Home() {
 
         {/* Custom Cake */}
         <div className="my-10">
-          <div className="relative bg-amber-100 h-[500px] rounded-xl">
-            <div className="absolute top-5 right-5">
-              <h1>CHEZ</h1>
+          <div className="relative bg-[#eae0d4] h-[500px] rounded-xl">
+            <div className="absolute right-5">
+              <Image src={chez} width={200} height={200} alt="logo" />
             </div>
 
             <div className="absolute bottom-10 left-5">
@@ -103,8 +104,8 @@ export default function Home() {
 
       {/* Ready to Order */}
       <div className="my-20 w-11/12 mx-auto">
-        <div className="bg-amber-100 rounded-xl px-4 py-10">
-          <h1 className="mb-10">CHEZ</h1>
+        <div className="bg-[#eae0d4] rounded-xl px-4 py-10">
+          <Image src={chez} width={200} height={200} alt="logo" className=""/>
           <div>
             <h1 className="text-3xl">Ready to Order?</h1>
             <p className="mt-2 mb-10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>

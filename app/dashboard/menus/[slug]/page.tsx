@@ -3,16 +3,16 @@
 import { fetchAPI } from "@/lib/apiClient"
 import { Category, Menu } from "@/lib/interface"
 
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 
 import clsx from "clsx"
-import { Categories } from "@/app/generated/prisma"
 import { validateMenuForm } from "@/lib/formValidation"
 
 export default function MenuDetail() {
     const path = usePathname()
+    const router = useRouter()
 
     const [ menuDetail, setMenuDetail ] = useState<Menu>({
         id: "",
@@ -51,7 +51,7 @@ export default function MenuDetail() {
         const data = await fetchAPI(`/api/menus/${path.split("/")[3]}`, "PUT", formData)
 
         if (data.success) {
-
+            router.push("/dashboard/menus")
         }
 
         setIsLoadingSubmit(false)

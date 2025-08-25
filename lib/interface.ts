@@ -18,8 +18,8 @@ export interface Menu {
     isFavourite: boolean;
     categoryId: string;
     isActive: boolean;
-    createdAt?: string;
+    createdAt?: string | Date;
     createdBy?: string;
-    updatedAt?: string;
-    updatedBy?: string;
+    updatedAt?: string | Date | null;
+    updatedBy?: string | null;
 }

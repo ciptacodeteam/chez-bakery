@@ -31,6 +31,7 @@ export const groupMenuByCategory = (categories: Category[], menus: Menu[]) => {
             const categoryMenu = menus.filter((menu) => menu.categoryId === category.id)
 
             temp.categoryName = category.categoryName
+            temp.categoryImage = category.categoryImage
             temp.categoryMenu = categoryMenu
 
             result.push(temp)

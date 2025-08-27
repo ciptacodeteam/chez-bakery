@@ -1,14 +1,30 @@
 "use client"
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCreative, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+
 import { fetchAPI } from "@/lib/apiClient"
-import sample from "@/public/images/sample.jpg"
 
 import Image from "next/image"
 import Link from "next/link"
 
 import { Menu } from "@/lib/interface"
 
+import placeholder from "@/public/images/sample.jpg"
+
 import { useEffect, useState } from "react"
+
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+
+const slidesMobile = [
+    placeholder,
+    placeholder,
+    placeholder,
+]
 
 export default function MenuPage() {
     const [ storage, setStorage ] = useState<Record<string, Menu[] | string>[]>()
@@ -21,7 +37,7 @@ export default function MenuPage() {
         console.log(data)
 
         setStorage(data.categoryMenus)
-        setIsLoading(false)      
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -29,23 +45,24 @@ export default function MenuPage() {
     }, [])
 
     return (
-        <>
+        <div className="tracking-wide">
             {/* Hero */}
             <div className="pt-24 pb-40 bg-[url(/images/hero-mobile.jpeg)] bg-cover">
                 <div className="mt-32 w-11/12 mx-auto">
                     <div className="text-white text-center">
                         <h1 className="text-5xl font-semibold">Our Menu</h1>
-                        <p className="text-sm mt-2">All of our menus available at Chez bakery.</p>
+                        <p className="mt-3" style={{ fontFamily: "var(--font-quicksand)" }}>All of our menus available at Chez bakery.</p>
                     </div>
                 </div>
-
             </div>
-            
-            <div className="text-center py-20">
-                <h4>Eat with us</h4>
-                <h1>Chez Bakery Menus</h1>
 
-                <p>Blablabla</p>
+            <div className="text-center py-20 w-9/12 mx-auto">
+                <h4 className="text-slate-500">Eat with us</h4>
+                <h1 className="text-3xl mt-5 leading-normal">Chez <br /> Bakery <br /> Menus</h1>
+
+                <hr  className="w-2/12 mx-auto my-10 bg-[#304428]"/>
+
+                <p className="text-slate-500" style={{ fontFamily: "var(--font-quicksand)" }}>Blablabla</p>
             </div>
 
             {/* Categories & Menus */}
@@ -86,17 +103,46 @@ export default function MenuPage() {
                 }
             </div>
 
+            <Swiper
+                modules={[EffectCreative, Autoplay]}
+                effect="creative"
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                grabCursor={false}
+                slidesPerView={1}
+                spaceBetween={0}
+                creativeEffect={{
+                    prev: {
+                        shadow: true,
+                        translate: [0, 0, -400],
+                    },
+                    next: {
+                        translate: ['100%', 0, 0],
+                    },
+                }}
+                className="w-screen h-auto"
+            >
+                {
+                    slidesMobile.map((src, index) => (
+                        <SwiperSlide key={index}>
+                            <Image src={src} alt="placeholder" className='w-screen h-auto' />
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
+
             {/*  */}
-            <div className="bg-amber-700">
+            <div className="bg-[#eae0d4]">
                 <div className="w-11/12 mx-auto py-20 text-center">
-                    <h3 className="mb-1 text-xs">Come visit us today</h3>
+                    <h3 className="mb-1 text-xs mb-5 text-slate-500">Come visit us today</h3>
                     <h1 className="text-3xl mb-5">About Chez</h1>
+
+                    <hr  className="w-2/12 mx-auto my-10 bg-[#304428]"/>
 
                     <p className="mb-8">This kitchen is a brewery of life – whether it&apos;s the kids baking parties or their parents elaborate soirees, there&apos;s always something cooking in here. Offering stylish and modern European cuisine served with exquisite attention to detail and immaculate presentation.</p>
 
-                    <Link href="" className="px-4 py-2 border border-white rounded-full text-white">Visit Us</Link>
+                    <Link href="" className="px-4 py-2 border border-[#304428] rounded-full text-[#304428] font-bold" style={{ fontFamily: "var(--font-quicksand)" }}>Visit Us</Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

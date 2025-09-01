@@ -86,12 +86,12 @@ export default function MenuPage() {
                                                 <Image src={menu.menuImage} alt="sample" width={70} height={70} className="mr-3 aspect-square rounded-xl" unoptimized/>
 
                                                 <div>
-                                                    <div className="flex justify-between">
-                                                        <h3 className="text-lg font-semibold">SALMON TARTARE</h3>
-                                                        <p className="text-lg font-semibold">$23</p>
+                                                    <div className="flex flex-col justify-between text-[#304428]">
+                                                        <h3 className="">{menu.menuName}</h3>
+                                                        <p className=" text-sm">Rp. {menu.price.toLocaleString()}</p>
                                                     </div>
 
-                                                    <p className="mt-1 text-sm">Fennel, citrus & herb yogourt. Served with fries and/or salad</p>
+                                                    <p className="mt-1 text-sm" style={{ fontFamily: "var(--font-quicksand)" }}>Fennel, citrus & herb yogourt. Served with fries and/or salad</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,12 +133,12 @@ export default function MenuPage() {
             {/*  */}
             <div className="bg-[#eae0d4]">
                 <div className="w-11/12 mx-auto py-20 text-center">
-                    <h3 className="mb-1 text-xs mb-5 text-slate-500">Come visit us today</h3>
-                    <h1 className="text-3xl mb-5">About Chez</h1>
+                    <h3 className="text-xs mb-5 text-slate-500">Come visit us today</h3>
+                    <h1 className="text-3xl mb-5 text-[#304428]">About Chez</h1>
 
                     <hr  className="w-2/12 mx-auto my-10 bg-[#304428]"/>
 
-                    <p className="mb-8">This kitchen is a brewery of life – whether it&apos;s the kids baking parties or their parents elaborate soirees, there&apos;s always something cooking in here. Offering stylish and modern European cuisine served with exquisite attention to detail and immaculate presentation.</p>
+                    <p className="mb-8" style={{ fontFamily: "var(--font-quicksand)" }}>This kitchen is a brewery of life – whether it&apos;s the kids baking parties or their parents elaborate soirees, there&apos;s always something cooking in here. Offering stylish and modern European cuisine served with exquisite attention to detail and immaculate presentation.</p>
 
                     <Link href="" className="px-4 py-2 border border-[#304428] rounded-full text-[#304428] font-bold" style={{ fontFamily: "var(--font-quicksand)" }}>Visit Us</Link>
                 </div>

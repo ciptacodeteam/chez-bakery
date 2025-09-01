@@ -31,7 +31,7 @@ export default function Navigation() {
                 <div></div>
                 :
                 <header className="absolute inset-x-0 top-5 z-50 bg-black/70 w-11/12 mx-auto rounded-full">
-                    <nav aria-label="Global" className="flex items-center justify-between px-6 py-2 lg:px-8">
+                    <nav aria-label="Global" className="flex items-center justify-between px-6 py-2 lg:px-8" style={{ fontFamily: "var(--font-quicksand)" }}>
                         <div className="flex lg:flex-1">
                             <a href="#" className="-m-1.5 p-1.5 text-[#304428] font-bold text-xl">
                                 <Image src={chez} alt="logo" width={60} height={60} />

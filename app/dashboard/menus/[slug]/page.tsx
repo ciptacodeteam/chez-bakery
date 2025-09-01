@@ -10,6 +10,9 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import clsx from "clsx"
 import { validateMenuForm } from "@/lib/formValidation"
 
+import Skeleton from "react-loading-skeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
+
 export default function MenuDetail() {
     const path = usePathname()
     const router = useRouter()
@@ -85,23 +88,28 @@ export default function MenuDetail() {
             <div>
                 <div className="px-4 sm:px-0">
                     <h3 className="text-base/7 font-semibold text-gray-900">Menu Information</h3>
-                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Create new menu information.</p>
+                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500" style={{ fontFamily: "var(--font-quicksand)" }}>Create new menu information.</p>
                 </div>
                 <div className="mt-6 border-t border-gray-100">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} style={{ fontFamily: "var(--font-quicksand)" }}>
                         <dl className="divide-y divide-gray-100">
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Menu Name</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <input
-                                        id="menuName"
-                                        name="menuName"
-                                        type="text"
-                                        onChange={handleChange}
-                                        value={menuDetail.menuName}
-                                        placeholder="Cake"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.menuName === undefined ? "border-gray-300" : "border-red-500")}
-                                    />
+                                    {
+                                        isLoading ?
+                                        <Skeleton width={200} />
+                                        :
+                                        <input
+                                            id="menuName"
+                                            name="menuName"
+                                            type="text"
+                                            onChange={handleChange}
+                                            value={menuDetail.menuName}
+                                            placeholder="Cake"
+                                            className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.menuName === undefined ? "border-gray-300" : "border-red-500")}
+                                        />
+                                    }
                                     { errors.menuName && <p className="text-red-500 text-xs mt-1">{errors.menuName}</p>}
                                 </dd>
                             </div>
@@ -111,16 +119,21 @@ export default function MenuDetail() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Category Name</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <select name="categoryId" 
-                                    onChange={handleChange}
-                                    value={menuDetail.categoryId} className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.categoryId === undefined ? "border-gray-300" : "border-red-500")}>
-                                        <option value="">-</option>
-                                        {
-                                            categories.map((c, index) => (
-                                                <option key={index} value={c.id}>{c.categoryName}</option>
-                                            ))
-                                        }
-                                    </select>
+                                    {
+                                        isLoading ?
+                                        <Skeleton width={200} />
+                                        :
+                                        <select name="categoryId" 
+                                        onChange={handleChange}
+                                        value={menuDetail.categoryId} className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.categoryId === undefined ? "border-gray-300" : "border-red-500")}>
+                                            <option value="">-</option>
+                                            {
+                                                categories.map((c, index) => (
+                                                    <option key={index} value={c.id}>{c.categoryName}</option>
+                                                ))
+                                            }
+                                        </select>
+                                    }
                                     { errors.categoryId && <p className="text-red-500 text-xs mt-1">{errors.categoryId}</p>}
                                 </dd>
                             </div>
@@ -130,14 +143,19 @@ export default function MenuDetail() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Menu Description</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <textarea
-                                        id="menuDescription"
-                                        name="menuDescription"
-                                        placeholder="Cake"
-                                        onChange={handleChange}
-                                        value={menuDetail.menuDescription}
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 border-gray-300")}
-                                    />
+                                    {
+                                        isLoading ?
+                                        <Skeleton width={200} height={100} />
+                                        :
+                                        <textarea
+                                            id="menuDescription"
+                                            name="menuDescription"
+                                            placeholder="Cake"
+                                            onChange={handleChange}
+                                            value={menuDetail.menuDescription}
+                                            className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6 border-gray-300")}
+                                        />
+                                    }
                                 </dd>
                             </div>
                         </dl>
@@ -146,15 +164,22 @@ export default function MenuDetail() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Menu Image</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    { menuDetail.menuImage === "" ? <></> : <img src={menuDetail.menuImage} className="my-2 rounded-xl" />}
-                                    <input
-                                        id="menuImage"
-                                        name="menuImage"
-                                        type="file"
-                                        // value="2500000"
-                                        accept="image/jpeg, .jpg, .jpeg, .png"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.menuImage === undefined ? "border-gray-300" : "border-red-500")}
-                                    />
+                                    {
+                                        isLoading ?
+                                        <Skeleton width={200} />
+                                        :
+                                        <div>
+                                            {menuDetail.menuImage === "" ? <></> : <img src={menuDetail.menuImage} className="my-2 rounded-xl aspect-square" />}
+                                            <input
+                                                id="menuImage"
+                                                name="menuImage"
+                                                type="file"
+                                                // value="2500000"
+                                                accept="image/jpeg, .jpg, .jpeg, .png"
+                                                className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.menuImage === undefined ? "border-gray-300" : "border-red-500")}
+                                            />
+                                        </div>
+                                    }
                                     { errors.menuImage && <p className="text-red-500 text-xs mt-1">{errors.menuImage}</p>}
                                 </dd>
                             </div>
@@ -164,16 +189,21 @@ export default function MenuDetail() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Price</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <input
-                                        id="price"
-                                        name="price"
-                                        type="number"
-                                        onChange={handleChange}
-                                        value={menuDetail.price}
-                                        min="0"
-                                        placeholder="150000"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.price === undefined ? "border-gray-300" : "border-red-500")}
-                                    />
+                                    {
+                                        isLoading ?
+                                        <Skeleton width={200} />
+                                        :
+                                        <input
+                                            id="price"
+                                            name="price"
+                                            type="number"
+                                            onChange={handleChange}
+                                            value={menuDetail.price}
+                                            min="0"
+                                            placeholder="150000"
+                                            className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.price === undefined ? "border-gray-300" : "border-red-500")}
+                                        />
+                                    }
                                     { errors.price && <p className="text-red-500 text-xs mt-1">{errors.price}</p>}
                                 </dd>
                             </div>
@@ -181,9 +211,9 @@ export default function MenuDetail() {
 
                         <button
                             type="submit"
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ml-4 mt-5"
+                            className="rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 mt-5 md:ml-0 hover:cursor-pointer hover:bg-[#5d8650]"
                         >
-                            { isLoading ? "Submitting..." : "Create New Menu" }
+                            { isLoadingSubmit ? "Submitting..." : "Create New Menu" }
                         </button>
                     </form>
                 </div>

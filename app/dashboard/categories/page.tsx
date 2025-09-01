@@ -8,6 +8,11 @@ import Link from "next/link"
 
 import { useEffect, useState } from "react"
 
+import Skeleton from "react-loading-skeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
+
+const loadCategories = [1, 2, 3, 4, 5]
+
 export default function Categories() {
     const [ categories, setCategories ] = useState<Category[]>([])
 
@@ -26,18 +31,19 @@ export default function Categories() {
 
     return (
         <>
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className="px-4 md:px-0">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold text-gray-900">Categories</h1>
-                        <p className="mt-2 text-sm text-gray-700">
+                        <p className="mt-2 text-sm text-gray-700" style={{ fontFamily: "var(--font-quicksand)" }}>
                             A list of all the categories in your database.
                         </p>
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                         <Link
                             href="/dashboard/categories/add"
-                            className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="block rounded-md bg-[#304428] px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
+                            style={{ fontFamily: "var(--font-quicksand)" }}
                         >
                             Add Category
                         </Link>
@@ -49,26 +55,45 @@ export default function Categories() {
                         <div className="overflow-hidden ring-1 shadow-sm ring-black/5 sm:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-300">
                             <thead className="bg-gray-50">
-                            <tr>
-                                <th scope="col" className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                    Category Name
-                                </th>
-                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    Category Image
-                                </th>
-                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    Updated By
-                                </th>
-                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                    Updated On
-                                </th>
-                                <th scope="col" className="relative py-3.5 pr-4 pl-3 sm:pr-6">
-                                    <span className="sr-only">Edit</span>
-                                </th>
-                            </tr>
+                                <tr>
+                                    <th scope="col" className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                        Category Name
+                                    </th>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Category Image
+                                    </th>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Updated By
+                                    </th>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Updated On
+                                    </th>
+                                    <th scope="col" className="relative py-3.5 pr-4 pl-3 sm:pr-6">
+                                        <span className="sr-only">Edit</span>
+                                    </th>
+                                </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 bg-white">
+                            <tbody className="divide-y divide-gray-200 bg-white" style={{ fontFamily: "var(--font-quicksand)" }}>
                             {
+                                isLoading ?
+                                loadCategories.map((c, index) => (
+                                    <tr key={index}>
+                                        <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-6">
+                                            <Skeleton width={50} />
+                                        </td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                            <Skeleton width={100} height={50} />
+                                        </td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                            <Skeleton width={100} />
+                                        </td>
+                                        <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500"><Skeleton width={100} /></td>
+                                        <td className="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
+                                            <Skeleton width={25} />
+                                        </td>
+                                    </tr>
+                                ))
+                                :
                                 categories.map((category, index) => (
                                     <tr key={index}>
                                         <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-6">
@@ -80,7 +105,7 @@ export default function Categories() {
                                         <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{category.updatedBy === null ? "-" : category.updatedBy}</td>
                                         <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{category.updatedAt === null ? dateTransform(category.createdAt as string) : dateTransform(category.updatedAt as string)}</td>
                                         <td className="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">
-                                            <Link href={`/dashboard/categories/${category.id}`}className="text-indigo-600 hover:text-indigo-900">
+                                            <Link href={`/dashboard/categories/${category.id}`}className="text-[#304428]">
                                             Edit<span className="sr-only"></span>
                                             </Link>
                                         </td>

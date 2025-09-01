@@ -13,8 +13,7 @@ import chez from "@/public/images/chez.png"
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Menu', href: '/menus' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
+    { name: 'Contact Us', href: '' },
 ]
 
 export default function Navigation() {

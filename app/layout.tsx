@@ -32,7 +32,7 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={`${libre.variable} ${quicksand.variable} antialiased`}
-          suppressHydrationWarning
+          suppressHydrationWarning={true}
           style={{ fontFamily: "var(--font-libre )" }}
         >
           <Navigation />

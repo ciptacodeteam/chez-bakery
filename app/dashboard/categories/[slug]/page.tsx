@@ -80,12 +80,12 @@ export default function CategoryDetails() {
             <div>
                 <div className="px-4 sm:px-0">
                     <h3 className="text-base/7 font-semibold text-gray-900">Category Information</h3>
-                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Create new category information.</p>
+                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500" style={{ fontFamily: "var(--font-quicksand)" }}>Edit category information.</p>
                 </div>
                 <div className="mt-6 border-t border-gray-100">
                     <form onSubmit={handleSubmit}>
                         <dl className="divide-y divide-gray-100">
-                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" style={{ fontFamily: "var(--font-quicksand)" }}>
                                 <dt className="text-sm/6 font-medium text-gray-900">Category Name</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
                                     {
@@ -108,7 +108,7 @@ export default function CategoryDetails() {
                         </dl>
 
                         <dl className="divide-y divide-gray-100">
-                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" style={{ fontFamily: "var(--font-quicksand)" }}>
                                 <dt className="text-sm/6 font-medium text-gray-900">Category Image</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
                                     {
@@ -135,9 +135,10 @@ export default function CategoryDetails() {
                         </dl>
                         <button
                             type="submit"
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ml-4 mt-5"
+                            className="rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 ml-4 mt-5 md:ml-0 hover:cursor-pointer hover:bg-[#5d8650]"
+                            style={{ fontFamily: "var(--font-quicksand)" }}
                         >
-                            { isLoadingSubmit ? "Submitting..." : "Create New Category" }
+                            { isLoadingSubmit ? "Submitting..." : "Edit Category" }
                         </button>
                     </form>
                 </div>

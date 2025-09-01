@@ -20,9 +20,9 @@ export default function Footer() {
                 <div></div>
                 :
                 <footer className="mt-20 mb-10 w-11/12 mx-auto text-[#304428] md:flex md:flex-row">
-                    <Image src={footer} alt="footer" width={400} height={400} className="rounded-xl md:w-1/2" />
+                    <Image src={footer} alt="footer" width={400} height={400} className="rounded-xl md:w-1/2 md:mr-10" />
 
-                    <div className="md:w-1/2 md:h-full md:bg-red-100 md:h-full">
+                    <div className="md:w-1/2 md:h-full">
                         <div className="bg-[#eae0d4] text-[#304428] py-10 px-5 my-5 rounded-xl md:mt-0">
                             <h1 className="text-3xl mb-10 font-semibold">Visit or Reach Out</h1>
                             <ul style={{ fontFamily: "var(--font-quicksand)" }} className="">

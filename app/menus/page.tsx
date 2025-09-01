@@ -13,7 +13,7 @@ import Link from "next/link"
 
 import { Menu } from "@/lib/interface"
 
-import placeholder from "@/public/images/sample.jpg"
+import placeholder from "@/public/images/custom.png"
 
 import { useEffect, useState } from "react"
 
@@ -21,6 +21,8 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 
 const slidesMobile = [
+    placeholder,
+    placeholder,
     placeholder,
     placeholder,
     placeholder,
@@ -78,7 +80,7 @@ export default function MenuPage() {
                             </div>
 
                             {/* Menu Section */}
-                            <div className="py-20 w-11/12 mx-auto">
+                            <div className="py-20 w-11/12 mx-auto md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-10">
                                 {
                                     (s.categoryMenu as Menu[]).map((menu: Menu, index) => (
                                         <div key={index} className="my-10">
@@ -86,7 +88,7 @@ export default function MenuPage() {
                                                 <Image src={menu.menuImage} alt="sample" width={70} height={70} className="mr-3 aspect-square rounded-xl" unoptimized/>
 
                                                 <div>
-                                                    <div className="flex flex-col justify-between text-[#304428]">
+                                                    <div className="flex flex-col lg:flex-row justify-between text-[#304428]">
                                                         <h3 className="">{menu.menuName}</h3>
                                                         <p className=" text-sm">Rp. {menu.price.toLocaleString()}</p>
                                                     </div>
@@ -103,32 +105,64 @@ export default function MenuPage() {
                 }
             </div>
 
-            <Swiper
-                modules={[EffectCreative, Autoplay]}
-                effect="creative"
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                grabCursor={false}
-                slidesPerView={1}
-                spaceBetween={0}
-                creativeEffect={{
-                    prev: {
-                        shadow: true,
-                        translate: [0, 0, -400],
-                    },
-                    next: {
-                        translate: ['100%', 0, 0],
-                    },
-                }}
-                className="w-screen h-auto"
-            >
-                {
-                    slidesMobile.map((src, index) => (
-                        <SwiperSlide key={index}>
-                            <Image src={src} alt="placeholder" className='w-screen h-auto' />
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+            {/* Mobile */}
+            <div className="block lg:hidden">
+                <Swiper
+                    modules={[EffectCreative, Autoplay]}
+                    effect="creative"
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    grabCursor={false}
+                    slidesPerView={1}
+                    spaceBetween={0}
+                    creativeEffect={{
+                        prev: {
+                            shadow: true,
+                            translate: [0, 0, -400],
+                        },
+                        next: {
+                            translate: ['100%', 0, 0],
+                        },
+                    }}
+                    className="w-screen h-auto"
+                >
+                    {
+                        slidesMobile.map((src, index) => (
+                            <SwiperSlide key={index}>
+                                <Image src={src} alt="placeholder" className='w-screen h-auto' />
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </div>
+
+            {/* Desktop */}
+            <div className="hidden lg:block">
+                <Swiper
+                    modules={[Autoplay]}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    grabCursor={false}
+                    slidesPerView={4}
+                    spaceBetween={0}
+                    creativeEffect={{
+                        prev: {
+                            shadow: true,
+                            translate: [0, 0, -400],
+                        },
+                        next: {
+                            translate: ['100%', 0, 0],
+                        },
+                    }}
+                    className="w-screen h-auto"
+                >
+                    {
+                        slidesMobile.map((src, index) => (
+                            <SwiperSlide key={index}>
+                                <Image src={src} alt="placeholder" className='w-full h-auto object-cover' />
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </div>
 
             {/*  */}
             <div className="bg-[#eae0d4]">

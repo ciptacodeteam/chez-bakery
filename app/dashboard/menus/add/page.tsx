@@ -60,10 +60,10 @@ export default function AddMenu() {
            <div>
                 <div className="px-4 sm:px-0">
                     <h3 className="text-base/7 font-semibold text-gray-900">Menu Information</h3>
-                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Create new menu information.</p>
+                    <p className="mt-1 max-w-2xl text-sm/6 text-gray-500" style={{ fontFamily: "var(--font-quicksand)" }}>Create new menu information.</p>
                 </div>
                 <div className="mt-6 border-t border-gray-100">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} style={{ fontFamily: "var(--font-quicksand)" }}>
                         <dl className="divide-y divide-gray-100">
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Menu Name</dt>
@@ -73,7 +73,7 @@ export default function AddMenu() {
                                         name="menuName"
                                         type="text"
                                         placeholder="Cake"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.menuName === undefined ? "border-gray-300" : "border-red-500")}
+                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.menuName === undefined ? "border-gray-300" : "border-red-500")}
                                     />
                                     { errors.menuName && <p className="text-red-500 text-xs mt-1">{errors.menuName}</p>}
                                 </dd>
@@ -84,7 +84,7 @@ export default function AddMenu() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm/6 font-medium text-gray-900">Category Name</dt>
                                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <select name="categoryId" className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.categoryId === undefined ? "border-gray-300" : "border-red-500")}>
+                                    <select name="categoryId" className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.categoryId === undefined ? "border-gray-300" : "border-red-500")}>
                                         <option value="">-</option>
                                         {
                                             categories.map((c, index) => (
@@ -105,7 +105,7 @@ export default function AddMenu() {
                                         id="menuDescription"
                                         name="menuDescription"
                                         placeholder="Cake"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 border-gray-300")}
+                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6 border-gray-300")}
                                     />
                                 </dd>
                             </div>
@@ -121,7 +121,7 @@ export default function AddMenu() {
                                         type="file"
                                         // value="2500000"
                                         accept="image/jpeg, .jpg, .jpeg, .png"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.menuImage === undefined ? "border-gray-300" : "border-red-500")}
+                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.menuImage === undefined ? "border-gray-300" : "border-red-500")}
                                     />
                                     { errors.menuImage && <p className="text-red-500 text-xs mt-1">{errors.menuImage}</p>}
                                 </dd>
@@ -138,7 +138,7 @@ export default function AddMenu() {
                                         type="number"
                                         min="0"
                                         placeholder="150000"
-                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6", errors.price === undefined ? "border-gray-300" : "border-red-500")}
+                                        className={clsx("block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6", errors.price === undefined ? "border-gray-300" : "border-red-500")}
                                     />
                                     { errors.price && <p className="text-red-500 text-xs mt-1">{errors.price}</p>}
                                 </dd>
@@ -147,7 +147,7 @@ export default function AddMenu() {
 
                         <button
                             type="submit"
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ml-4 mt-5"
+                            className="rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 mt-5"
                         >
                             { isLoading ? "Submitting..." : "Create New Menu" }
                         </button>

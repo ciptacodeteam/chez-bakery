@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+
 import {
   Dialog,
   DialogBackdrop,
@@ -11,8 +12,6 @@ import {
   Bars3Icon,
   BellIcon,
   Cog6ToothIcon,
-  
-  HomeIcon,
   CakeIcon,
   XMarkIcon,
   TagIcon,
@@ -20,23 +19,31 @@ import {
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
-const navigation = [
-  { name: 'Dashboard', href: "/dashboard", icon: HomeIcon, current: true },
-  { name: 'Categories', href: "/dashboard/categories", icon: TagIcon, current: false },
-  { name: 'Menus', href: "/dashboard/menus", icon: CakeIcon, current: false },
-]
+import { usePathname } from 'next/navigation'
+
+import { UserButton } from '@clerk/nextjs'
+
+import chezLogo from "@/public/images/chez.png"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Example() {
+  const path = usePathname()
+
+  const navigation = [
+    { name: 'Categories', href: "/dashboard/categories", icon: TagIcon, current: path.includes("categories") },
+    { name: 'Menus', href: "/dashboard/menus", icon: CakeIcon, current:  path.includes("menus") },
+  ]
+
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
-      <div className='h-full w-full'>
+      <div className='h-full w-full' style={{ fontFamily: "var(--font-quicksand)" }}>
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
           <DialogBackdrop
             transition
@@ -75,15 +82,15 @@ export default function Example() {
                               href={item.href}
                               className={classNames(
                                 item.current
-                                  ? 'bg-gray-50 text-indigo-600'
-                                  : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
+                                  ? 'bg-gray-50 text-[#304428]'
+                                  : 'text-gray-700 hover:bg-gray-50 hover:text-[#304428]',
                                 'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
                               <item.icon
                                 aria-hidden="true"
                                 className={classNames(
-                                  item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                                  item.current ? 'text-[#304428]' : 'text-gray-400 group-hover:text-[#304428]',
                                   'size-6 shrink-0',
                                 )}
                               />
@@ -104,12 +111,10 @@ export default function Example() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+            <div className='my-5'>
+              <div className="flex h-16 items-center">
+                <Image src={chezLogo} alt="logo" />
+              </div>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -121,15 +126,15 @@ export default function Example() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
+                              ? 'bg-gray-50 text-[#304428]'
+                              : 'text-gray-700 hover:bg-gray-50 hover:text-[#304428]',
                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
                           <item.icon
                             aria-hidden="true"
                             className={classNames(
-                              item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                              item.current ? 'text-[#304428]' : 'text-gray-400 group-hover:text-[#304428]',
                               'size-6 shrink-0',
                             )}
                           />
@@ -138,18 +143,6 @@ export default function Example() {
                       </li>
                     ))}
                   </ul>
-                </li>
-                <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-                  >
-                    <Cog6ToothIcon
-                      aria-hidden="true"
-                      className="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                    />
-                    Settings
-                  </a>
                 </li>
               </ul>
             </nav>
@@ -190,7 +183,7 @@ export default function Example() {
                 <div aria-hidden="true" className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" />
 
                 {/* Profile dropdown */}
-                
+                <UserButton />
               </div>
             </div>
           </div>

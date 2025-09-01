@@ -74,17 +74,17 @@ export default function Home() {
         {/* Custom Cake */}
         <div className="my-10 md:grid md:grid-cols-2 md:gap-x-5">
           <div>
-            <div className="relative bg-[#eae0d4] h-[500px] rounded-xl md:h-[600px]">
-              <div className="absolute right-5">
-                <Image src={chez} width={200} height={200} alt="logo" />
+            <div className="bg-[#eae0d4] py-10 rounded-xl md:h-[600px]">
+              <div className="flex w-full justify-end">
+                <Image src={chez} width={200} height={200} alt="logo" className="mr-5"/>
               </div>
 
-              <div className="absolute bottom-10 left-5 bg-red-100 md:right-20">
-                <h1 className="text-3xl font-semibold text-[#304428]">Special Cakes for <br className="hidden md:block" /> Special Moments</h1>
-                <p className="mt-2" style={{ fontFamily: "var(--font-quicksand)" }}>Whether it&apos;s a wedding, birthday, or just because - our custom cakes are made to match your moment. Gluten-free and vegan options available.</p>
+              <div className="px-5 mt-10">
+                <h1 className="text-2xl font-semibold text-[#304428] md:text-4xl">Special Cakes for <br className="hidden md:block" /> Special Moments</h1>
+                <p className="mt-2 md:text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>Whether it&apos;s a wedding, birthday, or just because - our custom cakes are made to match your moment. Gluten-free and vegan options available.</p>
 
-                <div className="my-10">
-                  <Link href={""} className="bg-[#304428] text-white px-4 py-2 rounded-full" style={{ fontFamily: "var(--font-quicksand)" }}>Start Your Custom Order</Link>
+                <div className="mt-10">
+                  <Link href={""} className="bg-[#304428] text-white px-4 py-2 rounded-full font-semibold" style={{ fontFamily: "var(--font-quicksand)" }}>Start Your Custom Order</Link>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function Home() {
             <Image src={momentOne} width={400} height={300} alt="moment" className="rounded-xl my-5"/>
             <Image src={momentThree} width={400} height={300} alt="moment" className="rounded-xl my-10"/>
           </div>
-          
+
           <Image src={momentFour} width={400} height={300} alt="moment" className="rounded-xl my-5"/>
 
           <div>
@@ -140,15 +140,17 @@ export default function Home() {
       </div>
 
       {/* Meet the baker */}
-      <div className="my-20 w-11/12 mx-auto md:flex md:flex-row-reverse md:items-end">
-        <div className="md:ml-20 md:bg-black">
-          <div className="hidden md:flex md:justify-end md:w-full">
+      <div className="my-20 w-11/12 mx-auto md:flex md:flex-row-reverse md:relative">
+        <div className="md:ml-20 md:h-[100px] md:bg-red-100">
+          <div className="hidden md:flex md:w-full md:justify-end">
             <Image src={chez} alt="logo" width={100} height={100} />
           </div>
 
-          <h1 className="text-2xl font-semibold text-[#304428] md:text-4xl">Meet the Baker</h1>
-          <p className="mt-2 mb-10 md:text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>Veloura Bakes bagan in a tiny home kitchen with one mission: to make people smile through pastries. our foudner, Catherine Valencia Pho, believes baking is both science and soul - and every item here reflects that belief.</p>
-          <Link href="" className="border border-[#304428] px-4 py-2 rounded-full text-[#304428] font-semibold" style={{ fontFamily: "var(--font-quicksand)" }}>Learn more about us &rarr;</Link>
+          <div className="md:w-3/4">
+            <h1 className="text-2xl font-semibold text-[#304428] md:text-4xl">Meet the Baker</h1>
+            <p className="mt-2 mb-10 md:text-lg" style={{ fontFamily: "var(--font-quicksand)" }}>Veloura Bakes bagan in a tiny home kitchen with one mission: to make people smile through pastries. our foudner, Catherine Valencia Pho, believes baking is both science and soul - and every item here reflects that belief.</p>
+            <Link href="" className="border border-[#304428] px-4 py-2 rounded-full text-[#304428] font-semibold" style={{ fontFamily: "var(--font-quicksand)" }}>Learn more about us &rarr;</Link>
+          </div>
         </div>
 
         <Image src={founder} alt="founder" width={400} height={400} className="rounded-xl mt-14 md:mt-0"/>
@@ -156,12 +158,12 @@ export default function Home() {
 
       {/* Ready to Order */}
       <div className="my-20 w-11/12 mx-auto">
-        <div className="relative bg-[#eae0d4] h-[500px] rounded-xl py-10 md:flex md:flex-row">
-          <div className="absolute right-5 top-0 md:block">
-            <Image src={chez} width={200} height={200} alt="logo" />
+        <div className="bg-[#eae0d4] rounded-xl py-10 md:flex md:flex-row-reverse">
+          <div className="flex w-full justify-end">
+            <Image src={chez} width={200} height={200} alt="logo" className="mr-5" />
           </div>
 
-          <div className="absolute bottom-10 left-5 md:block">
+          <div className="px-5 mt-10">
             <h1 className="text-3xl font-semibold text-[#304428]">Ready to Order?</h1>
             <p className="mt-2" style={{ fontFamily: "var(--font-quicksand)" }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 

@@ -21,14 +21,16 @@ export default function Categories() {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const load = async () => {
-    const data = await fetchAPI('/api/categories', 'GET');
-
-    setCategories(data.categories);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    setIsLoading(true);
+
+    const load = async () => {
+      const data = await fetchAPI('/api/categories', 'GET');
+
+      setCategories(data.categories);
+      setIsLoading(false);
+    };
+
     load();
   }, []);
 

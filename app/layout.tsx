@@ -4,6 +4,7 @@ import './globals.css';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { ClerkProvider } from '@clerk/nextjs';
+import MainProvider from '@/providers/MainProvider';
 
 const libre = Libre_Baskerville({
   subsets: ['latin'],
@@ -34,9 +35,11 @@ export default function RootLayout({
           className={`${libre.variable} ${quicksand.variable} antialiased`}
           suppressHydrationWarning
         >
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
+          <MainProvider>
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+          </MainProvider>
         </body>
       </html>
     </ClerkProvider>

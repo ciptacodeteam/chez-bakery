@@ -1,29 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
-// import { cn } from '@/lib/utils';
-import SiteLogo from '@/public/tedz.svg';
+import { cn } from '@/lib/utils';
+import SiteLogo from '@/public/images/chez.png';
 
 type Props = {
   white?: boolean;
   clickable?: boolean;
-  singleLogo?: boolean;
   className?: string;
 };
 
-const AppLogo = ({
-  // singleLogo,
-  // white = false,
-  clickable = true,
-  // className,
-  ...props
-}: Props) => {
+const AppLogo = ({ clickable = true, className, ...props }: Props) => {
   return (
     <>
       {clickable ? (
         <Link
           href={'/'}
+          prefetch
           {...props}
-          // className={cn('flex-center max-w-[120px] w-full', className)}
+          className={cn('flex-center max-w-[120px] w-full', className)}
         >
           <Image
             src={SiteLogo}
@@ -37,7 +31,7 @@ const AppLogo = ({
       ) : (
         <div
           {...props}
-          // className={cn('flex-center max-w-[120px] w-full', className)}
+          className={cn('flex-center max-w-[120px] w-full', className)}
         >
           <Image
             src={SiteLogo}

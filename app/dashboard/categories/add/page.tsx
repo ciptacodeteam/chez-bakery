@@ -61,7 +61,7 @@ export default function AddCategory() {
                     type='text'
                     placeholder='Cake'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       !errors.categoryName
                         ? 'border-gray-300'
                         : 'border-red-500'
@@ -88,7 +88,7 @@ export default function AddCategory() {
                     type='file'
                     accept='image/jpeg, .jpg, .jpeg, .png'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       !errors.categoryImage
                         ? 'border-gray-300'
                         : 'border-red-500'
@@ -104,7 +104,7 @@ export default function AddCategory() {
             </dl>
             <button
               type='submit'
-              className='rounded-md bg-[#304428] px-3 py-2 md:ml-0 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 mt-5 hover:cursor-pointer'
+              className='rounded-md bg-primary px-3 py-2 md:ml-0 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ml-4 mt-5 hover:cursor-pointer'
               disabled={isLoading}
             >
               {isLoading ? 'Submitting...' : 'Create New Category'}

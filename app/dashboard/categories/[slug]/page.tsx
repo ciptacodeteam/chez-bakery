@@ -173,7 +173,7 @@ export default function CategoryDetails() {
             </dl>
             <button
               type='submit'
-              className='rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 ml-4 mt-5 md:ml-0 hover:cursor-pointer hover:bg-[#5d8650] font-quicksand'
+              className='rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 ml-4 mt-5 md:ml-0 hover:cursor-pointer hover:bg-[#5d8650] font-quicksand'
             >
               {isLoadingSubmit ? 'Submitting...' : 'Edit Category'}
             </button>

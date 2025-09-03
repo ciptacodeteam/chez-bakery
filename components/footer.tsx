@@ -18,7 +18,7 @@ export default function Footer() {
       {isDashboard || isSignIn ? (
         <div></div>
       ) : (
-        <footer className='mt-20 mb-10 w-11/12 mx-auto text-[#304428] md:flex md:flex-row'>
+        <footer className='mt-20 mb-10 w-11/12 mx-auto text-primary md:flex md:flex-row'>
           <Image
             src={footer}
             alt='footer'
@@ -28,7 +28,7 @@ export default function Footer() {
           />
 
           <div className='md:w-1/2 md:h-full'>
-            <div className='bg-[#eae0d4] text-[#304428] py-10 px-5 my-5 rounded-xl md:mt-0'>
+            <div className='bg-[#eae0d4] text-primary py-10 px-5 my-5 rounded-xl md:mt-0'>
               <h1 className='text-3xl mb-10 font-semibold'>
                 Visit or Reach Out
               </h1>

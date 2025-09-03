@@ -64,7 +64,7 @@ export default function Menus() {
 
         <Link
           href='/dashboard/menus/add'
-          className='block rounded-md bg-[#304428] px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 font-quicksand'
+          className='block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 font-quicksand'
         >
           Add Menu
         </Link>
@@ -76,7 +76,7 @@ export default function Menus() {
           <button
             key={index}
             id={s.categoryName as string}
-            className='bg-[#304428] px-4 py-2 mr-3 rounded-full text-xs text-white font-semibold hover:cursor-pointer hover:bg-[#5d8650] font-quicksand'
+            className='bg-primary px-4 py-2 mr-3 rounded-full text-xs text-white font-semibold hover:cursor-pointer hover:bg-[#5d8650] font-quicksand'
             onClick={handleClick}
           >
             {s.categoryName as string}
@@ -88,7 +88,7 @@ export default function Menus() {
         <></>
       ) : selectedMenus.length === 0 ? (
         <div className='my-5 flex flex-col justify-center font-quicksand'>
-          <CircleStackIcon className='text-[#304428] h-[60px]' />
+          <CircleStackIcon className='text-primary h-[60px]' />
           <p className='text-center mt-2'>
             Currently you have no menu&apos;s data in the database.
           </p>
@@ -120,7 +120,7 @@ export default function Menus() {
             ))
           : selectedMenus.map((menu, index) => (
               <li key={index} className='relative'>
-                <div className='group overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-[#304428] focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
+                <div className='group overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-gray-100'>
                   <Link href={`/dashboard/menus/${menu.id}`}>
                     <Image
                       alt={menu.menuName}

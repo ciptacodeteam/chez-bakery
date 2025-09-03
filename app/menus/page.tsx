@@ -69,7 +69,7 @@ export default function MenuPage() {
           Chez <br /> Bakery <br /> Menus
         </h1>
 
-        <hr className='w-2/12 mx-auto my-10 bg-[#304428]' />
+        <hr className='w-2/12 mx-auto my-10 bg-primary' />
 
         <p className='text-slate-500 font-quicksand'>Blablabla</p>
       </div>
@@ -113,7 +113,7 @@ export default function MenuPage() {
                       />
 
                       <div>
-                        <div className='flex flex-col lg:flex-row justify-between text-[#304428]'>
+                        <div className='flex flex-col lg:flex-row justify-between text-primary'>
                           <h3 className=''>{menu.menuName}</h3>
                           <p className=' text-sm'>
                             Rp. {menu.price.toLocaleString()}
@@ -197,7 +197,7 @@ export default function MenuPage() {
       <div className='bg-[#eae0d4]'>
         <div className='w-11/12 mx-auto py-20 text-center'>
           <h3 className='text-xs mb-5 text-slate-500'>Come visit us today</h3>
-          <h1 className='text-3xl mb-5 text-[#304428]'>About Chez</h1>
+          <h1 className='text-3xl mb-5 text-primary'>About Chez</h1>
 
           <hr className='divider' />
 
@@ -213,7 +213,7 @@ export default function MenuPage() {
             href='https://maps.app.goo.gl/467TjLjsoHzQzpaBA'
             target='_blank'
             rel='noopener noreferrer'
-            className='px-4 py-2 border border-[#304428] flex items-center gap-2 rounded-full text-[#304428] font-bold font-quicksand w-fit mx-auto hover:bg-[#304428] hover:text-white hover:cursor-pointer transition-all'
+            className='px-4 py-2 border border-primary flex items-center gap-2 rounded-full text-primary font-bold font-quicksand w-fit mx-auto hover:bg-primary hover:text-white hover:cursor-pointer transition-all'
           >
             <IconMapPin size={16} />
             Visit Us

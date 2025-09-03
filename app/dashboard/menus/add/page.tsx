@@ -88,7 +88,7 @@ export default function AddMenu() {
                     type='text'
                     placeholder='Cake'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       errors.menuName === undefined
                         ? 'border-gray-300'
                         : 'border-red-500'
@@ -112,7 +112,7 @@ export default function AddMenu() {
                   <select
                     name='categoryId'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       errors.categoryId === undefined
                         ? 'border-gray-300'
                         : 'border-red-500'
@@ -145,7 +145,7 @@ export default function AddMenu() {
                     name='menuDescription'
                     placeholder='Cake'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6 border-gray-300'
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6 border-gray-300'
                     )}
                   />
                 </dd>
@@ -165,7 +165,7 @@ export default function AddMenu() {
                     // value="2500000"
                     accept='image/jpeg, .jpg, .jpeg, .png'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       !errors.menuImage ? 'border-gray-300' : 'border-red-500'
                     )}
                   />
@@ -189,7 +189,7 @@ export default function AddMenu() {
                     min='0'
                     placeholder='150000'
                     className={clsx(
-                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6',
+                      'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6',
                       !errors.price ? 'border-gray-300' : 'border-red-500'
                     )}
                   />
@@ -212,7 +212,7 @@ export default function AddMenu() {
                     type='checkbox'
                     checked={isFavourite}
                     onChange={handleChange}
-                    className='block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6'
+                    className='block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6'
                   />
                 </dd>
               </div>
@@ -220,7 +220,7 @@ export default function AddMenu() {
 
             <button
               type='submit'
-              className='rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 lg:ml-0 mt-5 hover:cursor-pointer'
+              className='rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ml-4 lg:ml-0 mt-5 hover:cursor-pointer'
               disabled={isLoadingSubmit || isLoading}
             >
               {isLoadingSubmit ? 'Submitting...' : 'Create New Menu'}

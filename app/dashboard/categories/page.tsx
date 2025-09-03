@@ -49,7 +49,7 @@ export default function Categories() {
           <div className='mt-4 sm:mt-0 sm:ml-16 sm:flex-none'>
             <Link
               href='/dashboard/categories/add'
-              className='block rounded-md bg-[#304428] px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 font-quicksand'
+              className='block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 font-quicksand'
             >
               Add Category
             </Link>
@@ -144,7 +144,7 @@ export default function Categories() {
                             <td className='relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6'>
                               <Link
                                 href={`/dashboard/categories/${category.id}`}
-                                className='text-[#304428]'
+                                className='text-primary'
                               >
                                 Edit<span className='sr-only'></span>
                               </Link>
@@ -157,7 +157,7 @@ export default function Categories() {
                   <></>
                 ) : categories.length === 0 ? (
                   <div className='my-5 flex flex-col justify-center font-quicksand'>
-                    <CircleStackIcon className='text-[#304428] h-[60px]' />
+                    <CircleStackIcon className='text-primary h-[60px]' />
                     <p className='text-center mt-2'>
                       Currently you have no categories data in the database.
                     </p>

@@ -3,56 +3,88 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Button } from '@/components/ui/button';
+import chez from '@/public/images/chez-logo.jpg';
+import chezLogo from '@/public/images/chez.png';
 import custom from '@/public/images/custom.png';
-import sample from '@/public/images/sample.jpg';
+import founder from '@/public/images/founder.jpeg';
 import momentOne from '@/public/images/moment-1.jpg';
 import momentTwo from '@/public/images/moment-2.jpg';
 import momentThree from '@/public/images/moment-3.jpg';
 import momentFour from '@/public/images/moment-4.jpg';
 import momentFive from '@/public/images/moment-5.jpg';
-import founder from '@/public/images/founder.jpeg';
-import chez from '@/public/images/chez-logo.jpg';
-import chezLogo from '@/public/images/chez.png';
+import sample from '@/public/images/sample.jpg';
+import { IconArrowRight } from '@tabler/icons-react';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <div className="pt-36 pb-40 bg-[url('/images/hero-mobile.jpeg')] bg-cover">
-        <div className='mt-32 w-11/12 mx-auto'>
-          <div className='text-white'>
-            <h1 className='text-4xl font-semibold md:text-6xl'>
+      <section className=" bg-[url('/images/hero-mobile.jpeg')] bg-cover bg-no-repeat bg-bottom">
+        <div className='w-11/12 mx-auto pt-72 pb-40'>
+          <motion.div
+            className='text-white'
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+          >
+            <motion.h1
+              className='text-4xl font-semibold md:text-6xl'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               From Chez, <br /> with Love
-            </h1>
-            <p className='w-9/12 mt-2 font-base text-base md:text-lg font-quicksand'>
+            </motion.h1>
+            <motion.p
+              className='w-9/12 mt-2 font-base text-base md:text-lg font-quicksand'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
               Crafted with passion, served with care, and{' '}
               <br className='hidden md:block' /> delivered to delight every
               bite.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className='text-xs md:text-sm mt-10'>
-            <Link
-              href=''
-              className='bg-[#304428] text-white px-5 py-3 rounded-full mr-3 border border-[#304428] font-bold font-quicksand'
+          <motion.div
+            className='text-xs md:text-sm mt-10'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
+            <Button
+              asChild
+              size={'lg'}
+              className='rounded-full bg-white border-white text-primary font-quicksand font-bold hover:bg-primary hover:text-white mr-5'
             >
-              View Menu
-            </Link>
-            <Link
-              href=''
-              className='border border-white px-5 py-3 rounded-full text-white font-bold font-quicksand'
+              <Link href='/menus'>View Menu</Link>
+            </Button>
+            <Button
+              asChild
+              variant={'outline'}
+              size={'lg'}
+              className='rounded-full font-quicksand font-bold border-white text-white hover:!bg-white/10 hover:text-primary bg-transparent group'
             >
-              Place an Order
-            </Link>
-          </div>
+              <Link href='/contact-us'>
+                Place an Order
+                <IconArrowRight
+                  size={16}
+                  className='group-hover:translate-x-1 transition-all duration-200'
+                />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Menu */}
       <div className='w-11/12 mx-auto my-20'>
         <div className='md:flex md:justify-between md:items-center'>
-          <div className=''>
-            <h1 className='text-3xl font-semibold text-[#304428] md:text-4xl'>
+          <div>
+            <h1 className='text-3xl font-semibold text-primary md:text-4xl'>
               A Taste of Chez
             </h1>
             <p className='mt-2 md:text-lg font-quicksand'>
@@ -60,13 +92,20 @@ export default function Home() {
             </p>
           </div>
 
-          <div className=''>
-            <Link
-              href=''
-              className='border border-[#304428] px-4 py-2 rounded-full text-[#304428] hidden md:block md:text-sm md:font-semibold font-quicksand'
+          <div>
+            <Button
+              asChild
+              variant={'outline'}
+              className='border-primary text-primary font-semibold mt-5 md:mt-0 font-quicksand rounded-full group'
             >
-              View Menu
-            </Link>
+              <Link href='/menus' className='flex items-center gap-2'>
+                View Menu
+                <IconArrowRight
+                  size={16}
+                  className='group-hover:translate-x-1 transition-all duration-200'
+                />
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -112,7 +151,7 @@ export default function Home() {
             </div>
 
             <div className='mt-20'>
-              <h1 className='text-2xl md:text-4xl text-[#304428] font-semibold'>
+              <h1 className='text-2xl md:text-4xl text-primary font-semibold'>
                 Special Cakes for Special Moments
               </h1>
               <p className='mt-2 mb-10 md:text-lg font-quicksand'>
@@ -123,7 +162,7 @@ export default function Home() {
 
               <Link
                 href={''}
-                className='text-white bg-[#304428] px-4 py-2 rounded-full font-quicksand'
+                className='text-white bg-primary px-4 py-2 rounded-full font-quicksand'
               >
                 Start Your Custom Order
               </Link>
@@ -148,7 +187,7 @@ export default function Home() {
         <div className='flex flex-row justify-center mt-10'>
           <Link
             href=''
-            className='border border-[#304428] px-4 py-2 rounded-full text-[#304428] font-bold font-quicksand'
+            className='border border-primary px-4 py-2 rounded-full text-primary font-bold font-quicksand'
           >
             View full menu
           </Link>
@@ -158,7 +197,7 @@ export default function Home() {
       {/* Moments */}
       <div className='my-20 w-11/12 mx-auto'>
         <div>
-          <h1 className='text-2xl text-[#304428] font-semibold md:text-4xl'>
+          <h1 className='text-2xl text-primary font-semibold md:text-4xl'>
             Baked Beauty
           </h1>
           <p className='mt-2 md:text-lg font-quicksand'>
@@ -288,14 +327,14 @@ export default function Home() {
           </div>
 
           <div className='md:mt-96'>
-            <h1 className='text-2xl md:text-4xl text-[#304428] font-semibold'>
+            <h1 className='text-2xl md:text-4xl text-primary font-semibold'>
               Meet the Baker
             </h1>
             <p className='mb-10 mt-5 font-quicksand'>Lorem ipsum</p>
 
             <Link
               href={''}
-              className='border border-[#304428] text-[#304428] font-semibold px-4 py-2 rounded-full font-quicksand'
+              className='border border-primary text-primary font-semibold px-4 py-2 rounded-full font-quicksand'
             >
               Learn more about us &rarr;
             </Link>
@@ -325,7 +364,7 @@ export default function Home() {
           </div>
 
           <div className='px-5 md:px-10 mt-10'>
-            <h1 className='text-2xl font-semibold text-[#304428] md:text-4xl'>
+            <h1 className='text-2xl font-semibold text-primary md:text-4xl'>
               Ready to Order?
             </h1>
             <p className='mt-2 md:text-lg font-quicksand'>
@@ -335,7 +374,7 @@ export default function Home() {
               of type and scrambled it to make a type specimen book.
             </p>
 
-            <button className='border border-[#304428] bg-[#304428] text-white px-4 py-2 rounded-full mt-10 font-bold font-quicksand'>
+            <button className='border border-primary bg-primary text-white px-4 py-2 rounded-full mt-10 font-bold font-quicksand'>
               Order Now &rarr;
             </button>
           </div>

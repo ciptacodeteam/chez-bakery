@@ -18,7 +18,7 @@ import Link from 'next/link';
 import AppLogo from './brands/AppLogo';
 import { Button } from './ui/button';
 
-const navigation = [
+export const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menus' },
   { name: 'Contact Us', href: '' },

@@ -10,6 +10,9 @@ import { usePathname } from 'next/navigation';
 
 import chez from '@/public/images/chez.png';
 import Link from 'next/link';
+import AppLogo from './brands/AppLogo';
+import { Button } from './ui/button';
+import { IconArrowRight } from '@tabler/icons-react';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -33,13 +36,7 @@ export default function Navigation() {
         className='flex items-center justify-between px-6 py-2 lg:px-8 font-quicksand'
       >
         <div className='flex lg:flex-1'>
-          <Link
-            href='/'
-            prefetch
-            className='-m-1.5 p-1.5 text-[#304428] font-bold text-xl'
-          >
-            <Image src={chez} alt='logo' width={60} height={60} />
-          </Link>
+          <AppLogo clickable className='max-w-16' />
         </div>
         <div className='flex lg:hidden'>
           <button
@@ -57,16 +54,25 @@ export default function Navigation() {
               key={item.name}
               href={item.href}
               prefetch
-              className='text-sm/6 font-semibold text-white'
+              className='text-sm/6 font-semibold text-white text-border-animate before:bg-white'
             >
               {item.name}
             </Link>
           ))}
         </div>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-          <Link href='/sign-in' className='text-sm/6 font-semibold text-white'>
-            Log in <span aria-hidden='true'>&rarr;</span>
-          </Link>
+          <Button asChild variant={'link'} className='hover:no-underline group'>
+            <Link
+              href='/sign-in'
+              className='text-sm/6 font-semibold text-white'
+            >
+              Log in
+              <IconArrowRight
+                size={16}
+                className='group-hover:translate-x-1 transition-transform'
+              />
+            </Link>
+          </Button>
         </div>
       </nav>
 

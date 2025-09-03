@@ -2,9 +2,9 @@
 
 import { fetchAPI } from '@/lib/apiClient';
 import { Category } from '@/lib/interface';
-import { dateTransform } from '@/lib/utils';
 
 import { CircleStackIcon } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 
 import Link from 'next/link';
@@ -128,14 +128,16 @@ export default function Categories() {
                               />
                             </td>
                             <td className='px-3 py-4 text-sm whitespace-nowrap text-gray-500'>
-                              {category.updatedBy === null
-                                ? '-'
-                                : category.updatedBy}
+                              {category.updatedBy ? category.updatedBy : '-'}
                             </td>
                             <td className='px-3 py-4 text-sm whitespace-nowrap text-gray-500'>
-                              {category.updatedAt === null
-                                ? dateTransform(category.createdAt as string)
-                                : dateTransform(category.updatedAt as string)}
+                              {!category.updatedAt
+                                ? dayjs(category.createdAt).format(
+                                    'DD MMM YYYY'
+                                  )
+                                : dayjs(category.updatedAt).format(
+                                    'DD MMM YYYY'
+                                  )}
                             </td>
                             <td className='relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6'>
                               <Link

@@ -33,9 +33,13 @@ export default function Navigation() {
         className='flex items-center justify-between px-6 py-2 lg:px-8 font-quicksand'
       >
         <div className='flex lg:flex-1'>
-          <a href='#' className='-m-1.5 p-1.5 text-[#304428] font-bold text-xl'>
+          <Link
+            href='/'
+            prefetch
+            className='-m-1.5 p-1.5 text-[#304428] font-bold text-xl'
+          >
             <Image src={chez} alt='logo' width={60} height={60} />
-          </a>
+          </Link>
         </div>
         <div className='flex lg:hidden'>
           <button

@@ -15,10 +15,16 @@ export default function AddMenu() {
 
     const [ errors, setErrors ] = useState<Record<string, string>>({})
 
+    const [ isFavourite, setIsFavourite ] = useState<boolean>(false)
+
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isLoadingSubmit, setIsLoadingSubmit ] = useState<boolean>(false)
 
     const [ categories, setCategories ] = useState<Category[]>([])
+
+    const handleChange = () => {
+        setIsFavourite(!isFavourite)
+    }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) =>{
         setIsLoadingSubmit(true)
@@ -26,6 +32,8 @@ export default function AddMenu() {
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget)
+
+        formData.append("isFavourite", isFavourite.toString())
 
         const { valid, errors } = validateMenuForm(formData)
 
@@ -144,12 +152,29 @@ export default function AddMenu() {
                                 </dd>
                             </div>
                         </dl>
+                        
+                        <dl className="divide-y divide-gray-100">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm/6 font-medium text-gray-900">Favourite</dt>
+                                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    <input
+                                        id="favourite"
+                                        name="favourite"
+                                        type="checkbox"
+                                        checked={isFavourite}
+                                        onChange={handleChange}
+                                        className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6"
+                                    />
+                                </dd>
+                            </div>
+                        </dl>
 
                         <button
                             type="submit"
-                            className="rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 mt-5"
+                            className="rounded-md bg-[#304428] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 lg:ml-0 mt-5 hover:cursor-pointer"
+                            disabled={isLoadingSubmit}
                         >
-                            { isLoading ? "Submitting..." : "Create New Menu" }
+                            { isLoadingSubmit ? "Submitting..." : "Create New Menu" }
                         </button>
                     </form>
                 </div>

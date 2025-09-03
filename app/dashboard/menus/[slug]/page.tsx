@@ -17,6 +17,8 @@ export default function MenuDetail() {
     const path = usePathname()
     const router = useRouter()
 
+    const [ isFavourite, setIsFavourite ] = useState<boolean>(false)
+
     const [ menuDetail, setMenuDetail ] = useState<Menu>({
         id: "",
         menuName: "",
@@ -42,6 +44,7 @@ export default function MenuDetail() {
         const formData = new FormData(e.currentTarget)
         
         formData.append("prevImageUrl", menuDetail.menuImage)
+        formData.append("isFavourite", isFavourite.toString())
         
         const { valid, errors } = validateMenuForm(formData, "PUT")
 
@@ -63,15 +66,19 @@ export default function MenuDetail() {
     const load = async () => {
         const data = await fetchAPI(`/api/menus/${path.split("/")[3]}`, "GET")
 
-        console.log(data)
-
         setMenuDetail(data.menuDetail)
+        setIsFavourite(data.menuDetail.isFavourite)
         setCategories(data.categories)
         setIsLoading(false)
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target
+
+        if (name === "favourite") {
+            setIsFavourite(!isFavourite)
+            return
+        }
 
         setMenuDetail((prev) => ({
             ...prev,
@@ -205,6 +212,22 @@ export default function MenuDetail() {
                                         />
                                     }
                                     { errors.price && <p className="text-red-500 text-xs mt-1">{errors.price}</p>}
+                                </dd>
+                            </div>
+                        </dl>
+
+                        <dl className="divide-y divide-gray-100">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm/6 font-medium text-gray-900">Favourite</dt>
+                                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    <input
+                                        id="favourite"
+                                        name="favourite"
+                                        type="checkbox"
+                                        checked={isFavourite}
+                                        onChange={handleChange}
+                                        className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#304428] sm:text-sm/6"
+                                    />
                                 </dd>
                             </div>
                         </dl>

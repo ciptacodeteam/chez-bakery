@@ -12,7 +12,7 @@ import {
   Bars3Icon,
   BellIcon,
   Cog6ToothIcon,
-  CakeIcon,
+  BookOpenIcon,
   XMarkIcon,
   TagIcon,
 } from '@heroicons/react/24/outline'
@@ -36,7 +36,7 @@ export default function Example() {
 
   const navigation = [
     { name: 'Categories', href: "/dashboard/categories", icon: TagIcon, current: path.includes("categories") },
-    { name: 'Menus', href: "/dashboard/menus", icon: CakeIcon, current:  path.includes("menus") },
+    { name: 'Menus', href: "/dashboard/menus", icon: BookOpenIcon, current:  path.includes("menus") },
   ]
 
   const [sidebarOpen, setSidebarOpen] = useState(false)

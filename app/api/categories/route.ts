@@ -13,7 +13,8 @@ export async function POST(req: Request) {
     const data = await req.formData()
 
     const blob = await put(`images/categories/${(data.get("categoryImage") as File).name}`, data.get("categoryImage") as File, {
-        access: "public"
+        access: "public",
+        allowOverwrite: true
     })
 
     const createCategory = await prisma.categories.create({

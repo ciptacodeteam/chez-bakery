@@ -79,6 +79,7 @@ export default function AddCategory() {
                         <button
                             type="submit"
                             className="rounded-md bg-[#304428] px-3 py-2 md:ml-0 text-sm font-semibold text-white shadow-xs hover:bg-[#5d8650] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#304428] ml-4 mt-5 hover:cursor-pointer"
+                            disabled={isLoading}
                         >
                             { isLoading ? "Submitting..." : "Create New Category" }
                         </button>

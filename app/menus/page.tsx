@@ -73,33 +73,40 @@ export default function MenuPage() {
                 {
                     storage?.map((s: Record<string, Menu[] | string>, index) => (
                         <div key={index}>
-                            <div className={`bg-cover h-[250px]`} style={{ backgroundImage: `url(${s.categoryImage})` }}>
+                            <div className={`bg-cover h-[250px] md:h-[500px]`} style={{ backgroundImage: `url(${s.categoryImage})` }}>
                                 <div className="bg-black/50 w-full h-full flex justify-center items-center">
                                     <h1 className="text-white font-bold text-3xl text-center">{s.categoryName as string}</h1>
                                 </div>
                             </div>
 
                             {/* Menu Section */}
-                            <div className="py-20 w-11/12 mx-auto md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-10">
-                                {
-                                    (s.categoryMenu as Menu[]).map((menu: Menu, index) => (
-                                        <div key={index} className="my-10">
-                                            <div className="flex items-center">
-                                                <Image src={menu.menuImage} alt="sample" width={70} height={70} className="mr-3 aspect-square rounded-xl" unoptimized/>
+                            {
+                                s.categoryMenu.length === 0 ?
+                                <div className="my-20 flex justify-center max-w-11/12 mx-auto">
+                                    <p className="text-center" style={{ fontFamily: "var(--font-quicksand)" }}>The menu is being prepared by the baker. We know you are excited to see the latest update of our menu.</p>
+                                </div>
+                                :
+                                <div className="py-20 w-11/12 mx-auto md:grid md:grid-cols-2">
+                                    {
+                                        (s.categoryMenu as Menu[]).map((menu: Menu, index) => (
+                                            <div key={index} className="my-4">
+                                                <div className="flex items-center justify-center">
+                                                    <Image src={menu.menuImage} alt="sample" width={70} height={70} className="mr-3 aspect-square rounded-xl" unoptimized/>
 
-                                                <div>
-                                                    <div className="flex flex-col lg:flex-row justify-between text-[#304428]">
-                                                        <h3 className="">{menu.menuName}</h3>
-                                                        <p className=" text-sm">Rp. {menu.price.toLocaleString()}</p>
+                                                    <div>
+                                                        <div className="flex flex-col lg:flex-row justify-between text-[#304428]">
+                                                            <h3 className="">{menu.menuName}</h3>
+                                                            <p className=" text-sm">Rp. {menu.price.toLocaleString()}</p>
+                                                        </div>
+
+                                                        <p className="mt-1 text-sm" style={{ fontFamily: "var(--font-quicksand)" }}>{menu.menuDescription === "" ? "This menu has no description at the current moment." : menu.menuDescription}</p>
                                                     </div>
-
-                                                    <p className="mt-1 text-sm" style={{ fontFamily: "var(--font-quicksand)" }}>Fennel, citrus & herb yogourt. Served with fries and/or salad</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
                     ))
                 }

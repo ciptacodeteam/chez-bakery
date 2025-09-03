@@ -6,6 +6,8 @@ import { groupMenuByCategory } from "@/lib/utils"
 
 import { MouseEvent, useEffect, useState } from "react"
 
+import { CircleStackIcon } from "@heroicons/react/24/outline"
+
 import Link from "next/link"
 
 import Skeleton from "react-loading-skeleton"
@@ -25,8 +27,10 @@ export default function Menus() {
 
         const categoryMenu = groupMenuByCategory(data.categories, data.menus)
 
+        console.log(categoryMenu)
+
         setStorage(categoryMenu)
-        setSelectedMenus(categoryMenu[0].categoryMenu as Menu[])
+        setSelectedMenus(categoryMenu.length === 0 ? [] : categoryMenu[0].categoryMenu as Menu[])
         setIsLoading(false)
     }
 
@@ -70,6 +74,20 @@ export default function Menus() {
                     ))
                 }
             </div>
+
+            {   
+                isLoading ?
+                <></>
+                :
+                selectedMenus.length === 0
+                ?
+                <div className="my-5 flex flex-col justify-center" style={{ fontFamily: "var(--font-quicksand)" }}>
+                    <CircleStackIcon className="text-[#304428] h-[60px]"/>
+                    <p className="text-center mt-2">Currently you have no menu&apos;s data in the database.</p>
+                </div>
+                :
+                <></>
+            }
             
 
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">

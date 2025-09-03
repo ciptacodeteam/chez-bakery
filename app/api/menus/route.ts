@@ -16,7 +16,8 @@ export async function POST(req: Request) {
     const data = await req.formData()
 
     const blob = await put(`images/menus/${(data.get("menuImage") as File).name}`, data.get("menuImage") as File, {
-        access: "public"
+        access: "public",
+        allowOverwrite: true
     })
 
     const createMenu = await prisma.menus.create({
@@ -26,7 +27,8 @@ export async function POST(req: Request) {
             price: parseInt(data.get("price") as string),
             menuImage: blob.url,
             categoryId: data.get("categoryId") as string,
-            createdBy: `${user?.firstName} ${user?.lastName}`
+            createdBy: `${user?.firstName} ${user?.lastName}`,
+            isFavourite: data.get("isFavourite") === "true" ? true : false
         }
     })
 

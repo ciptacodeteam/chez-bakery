@@ -35,8 +35,6 @@ export async function PUT(req: Request) {
     const data = await req.formData()
     const menuId = req.url.split("/")[5]
 
-    console.log(data)
-
     let blobUrl
 
     if ((data.get("menuImage") as File).size !== 0) {
@@ -61,7 +59,8 @@ export async function PUT(req: Request) {
             menuImage: blobUrl === null ? data.get("prevImageUrl") as string : blobUrl,
             categoryId: data.get("categoryId") as string,
             updatedAt: currentDateTime(),
-            updatedBy: `${user?.firstName} ${user?.lastName}`
+            updatedBy: `${user?.firstName} ${user?.lastName}`,
+            isFavourite: data.get("isFavourite") === "true" ? true : false
         }
     })
 

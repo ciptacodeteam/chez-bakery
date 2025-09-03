@@ -1,18 +1,15 @@
 'use client';
 
-import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
-import Image from 'next/image';
+import { useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import chez from '@/public/images/chez.png';
+import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import AppLogo from './brands/AppLogo';
 import { Button } from './ui/button';
-import { IconArrowRight } from '@tabler/icons-react';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -85,9 +82,7 @@ export default function Navigation() {
         <div className='fixed inset-0 z-50' />
         <DialogPanel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 font-quicksand'>
           <div className='flex items-center justify-between'>
-            <a href='#' className='-m-1.5 p-1.5'>
-              <Image src={chez} alt='logo' width={100} height={100} />
-            </a>
+            <AppLogo clickable className='max-w-[100]' />
             <button
               type='button'
               onClick={() => setMobileMenuOpen(false)}

@@ -21,6 +21,8 @@ import { IconMapPin } from '@tabler/icons-react';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 
+import { motion } from 'framer-motion';
+
 const slidesMobile = [
   placeholder,
   placeholder,
@@ -47,23 +49,67 @@ export default function MenuPage() {
     load();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <motion.div
+        className='flex flex-col items-center justify-center h-screen w-full bg-[#f8f5f0]'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Image
+          src={placeholder}
+          alt='Loading'
+          width={80}
+          height={80}
+          className='mb-6 animate-pulse'
+          unoptimized
+        />
+        <h2 className='text-xl font-semibold text-primary mb-2'>
+          Loading Menus...
+        </h2>
+        <p className='text-slate-500 font-quicksand'>
+          Please wait while we prepare something delicious for you.
+        </p>
+      </motion.div>
+    );
+  }
 
   return (
-    <div className='tracking-wide'>
+    <motion.div
+      className='tracking-wide'
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       {/* Hero */}
-      <div className='pt-24 pb-40 bg-[url(/images/hero-mobile.jpeg)] bg-cover'>
+      <motion.div
+        className='pt-24 pb-40 bg-[url(/images/hero-mobile.jpeg)] bg-cover'
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className='mt-32 w-11/12 mx-auto'>
-          <div className='text-white text-center'>
+          <motion.div
+            className='text-white text-center'
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+          >
             <h1 className='text-5xl font-semibold'>Our Menu</h1>
             <p className='mt-3 font-quicksand'>
               All of our menus available at Chez bakery.
             </p>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className='text-center py-20 w-9/12 mx-auto'>
+      <motion.div
+        className='text-center py-20 w-9/12 mx-auto'
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.7 }}
+      >
         <h4 className='text-slate-500'>Eat with us</h4>
         <h1 className='text-3xl mt-5 leading-normal'>
           Chez <br /> Bakery <br /> Menus
@@ -72,13 +118,19 @@ export default function MenuPage() {
         <hr className='w-2/12 mx-auto my-10 bg-primary' />
 
         <p className='text-slate-500 font-quicksand'>Blablabla</p>
-      </div>
+      </motion.div>
 
       {/* Categories & Menus */}
       <div>
         {/* Category Section */}
         {storage?.map((s: Record<string, Menu[] | string>, index) => (
-          <div key={index}>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: index * 0.2 }}
+          >
             <div
               className={`bg-cover h-[250px] md:h-[500px]`}
               style={{ backgroundImage: `url(${s.categoryImage})` }}
@@ -92,16 +144,35 @@ export default function MenuPage() {
 
             {/* Menu Section */}
             {s.categoryMenu.length === 0 ? (
-              <div className='my-20 flex justify-center max-w-11/12 mx-auto'>
+              <motion.div
+                className='my-20 flex justify-center max-w-11/12 mx-auto'
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
                 <p className='text-center font-quicksand'>
                   The menu is being prepared by the baker. We know you are
                   excited to see the latest update of our menu.
                 </p>
-              </div>
+              </motion.div>
             ) : (
-              <div className='py-20 w-11/12 mx-auto md:grid md:grid-cols-2'>
+              <motion.div
+                className='py-20 w-11/12 mx-auto md:grid md:grid-cols-2'
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
                 {(s.categoryMenu as Menu[]).map((menu: Menu, index) => (
-                  <div key={index} className='my-4'>
+                  <motion.div
+                    key={index}
+                    className='my-4'
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
                     <div className='flex items-center justify-center'>
                       <Image
                         src={menu.menuImage}
@@ -126,16 +197,22 @@ export default function MenuPage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Mobile */}
-      <div className='block lg:hidden'>
+      <motion.div
+        className='block lg:hidden'
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
         <Swiper
           modules={[EffectCreative, Autoplay]}
           effect='creative'
@@ -160,10 +237,16 @@ export default function MenuPage() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
 
       {/* Desktop */}
-      <div className='hidden lg:block'>
+      <motion.div
+        className='hidden lg:block'
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -191,12 +274,18 @@ export default function MenuPage() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
 
       {/*  */}
-      <div className='bg-[#eae0d4]'>
+      <motion.div
+        className='bg-[#eae0d4]'
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
         <div className='w-11/12 mx-auto py-20 text-center'>
-          <h3 className='text-xs mb-5 text-slate-500'>Come visit us today</h3>
+          <h3 className='text-sm mb-5 text-slate-700'>Come visit us today</h3>
           <h1 className='text-3xl mb-5 text-primary'>About Chez</h1>
 
           <hr className='divider' />
@@ -219,7 +308,7 @@ export default function MenuPage() {
             Visit Us
           </Link>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

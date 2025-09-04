@@ -21,6 +21,7 @@ import { IconMapPin } from '@tabler/icons-react';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 
+import LoadingScreen from '@/components/screens/LoadingScreen';
 import { motion } from 'framer-motion';
 
 const slidesMobile = [
@@ -49,31 +50,7 @@ export default function MenuPage() {
     load();
   }, []);
 
-  if (isLoading) {
-    return (
-      <motion.div
-        className='flex flex-col items-center justify-center h-screen w-full bg-[#f8f5f0]'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Image
-          src={placeholder}
-          alt='Loading'
-          width={80}
-          height={80}
-          className='mb-6 animate-pulse'
-          unoptimized
-        />
-        <h2 className='text-xl font-semibold text-primary mb-2'>
-          Loading Menus...
-        </h2>
-        <p className='text-slate-500 font-quicksand'>
-          Please wait while we prepare something delicious for you.
-        </p>
-      </motion.div>
-    );
-  }
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <motion.div

@@ -14,13 +14,13 @@ const BakerSection = () => {
   return (
     <section ref={ref}>
       <motion.div
-        className='my-24 md:max-w-11/12 px-5 md:px-0 w-full mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-16 md:gap-10'
+        className='my-24 md:max-w-11/12 px-5 md:px-0 w-full mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-10 md:gap-10'
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
         <motion.div
-          className='flex flex-col col-span-2 order-2 justify-center items-start bg-[#eae0d4] rounded-xl pb-16 pt-0 md:order-1'
+          className='flex flex-col col-span-2 order-2 h-full justify-between items-start md:order-1'
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}

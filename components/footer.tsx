@@ -51,7 +51,7 @@ export default function Footer() {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <motion.div
-            className='bg-[#eae0d4] text-primary py-10 px-5 my-5 rounded-xl md:mt-0'
+            className='bg-[#eae0d4] text-primary py-8 px-8 my-5 rounded-xl md:mt-0'
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -111,7 +111,7 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            className='flex items-center bg-[#eae0d4] px-5 py-5 rounded-xl'
+            className='flex items-center bg-[#eae0d4] pl-5 pr-10 py-5 rounded-xl'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}

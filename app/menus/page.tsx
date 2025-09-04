@@ -47,8 +47,6 @@ export default function MenuPage() {
     load();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-
   return (
     <div className='tracking-wide'>
       {/* Hero */}
@@ -113,7 +111,7 @@ export default function MenuPage() {
                       />
 
                       <div>
-                        <div className='flex flex-col lg:flex-row justify-between text-primary'>
+                        <div className='flex flex-col lg:flex-row justify-between text-primary font-semibold'>
                           <h3 className=''>{menu.menuName}</h3>
                           <p className=' text-sm'>
                             Rp. {menu.price.toLocaleString()}

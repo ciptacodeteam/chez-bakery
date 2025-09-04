@@ -43,7 +43,7 @@ const HeroSection = () => {
           <Button
             asChild
             size={'lg'}
-            className='rounded-full bg-white border-white text-primary font-quicksand font-bold hover:bg-primary hover:text-white mr-5'
+            className='rounded-full bg-white border-white text-white font-quicksand font-bold bg-primary hover:bg-[#5d8650] mr-5'
           >
             <Link href='/menus'>View Menu</Link>
           </Button>

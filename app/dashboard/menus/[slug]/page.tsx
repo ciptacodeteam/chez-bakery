@@ -10,8 +10,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { validateMenuForm } from '@/lib/formValidation';
 import clsx from 'clsx';
 
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { Skeleton } from '@/components/ui/skeleton';
 import Image from 'next/image';
 
 export default function MenuDetail() {
@@ -120,7 +119,7 @@ export default function MenuDetail() {
                 </dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={200} />
+                    <Skeleton className='w-[200px]' />
                   ) : (
                     <input
                       id='menuName'
@@ -153,7 +152,7 @@ export default function MenuDetail() {
                 </dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={200} />
+                    <Skeleton className='w-[200px]' />
                   ) : (
                     <select
                       name='categoryId'
@@ -190,7 +189,7 @@ export default function MenuDetail() {
                 </dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={200} height={100} />
+                    <Skeleton className='h-[100px] w-[200px]' />
                   ) : (
                     <textarea
                       id='menuDescription'
@@ -214,7 +213,7 @@ export default function MenuDetail() {
                 </dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={200} />
+                    <Skeleton className='w-[200px]' />
                   ) : (
                     <div>
                       {menuDetail.menuImage === '' ? (
@@ -257,7 +256,7 @@ export default function MenuDetail() {
                 <dt className='text-sm/6 font-medium text-gray-900'>Price</dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={200} />
+                    <Skeleton className='w-[200px]' />
                   ) : (
                     <input
                       id='price'

@@ -118,15 +118,9 @@ export default function Menus() {
                 <div className='group overflow-hidden rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2'>
                   <Skeleton className='w-[300px] h-[150px]' />
                 </div>
-                <p className='pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900'>
-                  <Skeleton className='w-[100px]' />
-                </p>
-                <p className='pointer-events-none block text-xs font-medium text-gray-500'>
-                  <Skeleton className='w-[75px]' />
-                </p>
-                <p className='pointer-events-none block text-sm font-medium text-gray-500'>
-                  <Skeleton className='w-[50px]' />
-                </p>
+                <Skeleton className='w-[100px]' />
+                <Skeleton className='w-[75px]' />
+                <Skeleton className='w-[50px]' />
               </li>
             ))
           : selectedMenus.map((menu, index) => (

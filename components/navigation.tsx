@@ -21,7 +21,7 @@ import { Button } from './ui/button';
 export const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menus' },
-  { name: 'Contact Us', href: '' },
+  { name: 'Contact Us', href: '#' },
 ];
 
 export default function Navigation() {

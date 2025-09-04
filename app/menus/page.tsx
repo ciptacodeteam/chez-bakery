@@ -132,7 +132,7 @@ export default function MenuPage() {
             transition={{ duration: 0.7, delay: index * 0.2 }}
           >
             <div
-              className={`bg-cover h-[250px] md:h-[500px]`}
+              className={`bg-contain h-[250px] md:h-[250px] bg-center overflow-hidden mt-4`}
               style={{ backgroundImage: `url(${s.categoryImage})` }}
             >
               <div className='bg-black/50 w-full h-full flex justify-center items-center'>
@@ -286,7 +286,7 @@ export default function MenuPage() {
       >
         <div className='w-11/12 mx-auto py-20 text-center'>
           <h3 className='text-sm mb-5 text-slate-700'>Come visit us today</h3>
-          <h1 className='text-3xl mb-5 text-primary'>About Chez</h1>
+          <h1 className='text-3xl text-primary'>About Chez</h1>
 
           <hr className='divider' />
 

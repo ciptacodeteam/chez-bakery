@@ -6,8 +6,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const groupMenuByCategory = (categories: Category[], menus: Menu[]) => {
+export type GroupedMenu = {
+  categoryId: string;
+  categoryName: string;
+  categoryImage: string;
+  categoryMenu: Menu[];
+};
+
+export const groupMenuByCategory = (
+  categories: Category[],
+  menus: Menu[]
+): GroupedMenu[] => {
   return categories.map((category) => ({
+    categoryId: category.id,
     categoryName: category.categoryName,
     categoryImage: category.categoryImage,
     categoryMenu: menus.filter((menu) => menu.categoryId === category.id),

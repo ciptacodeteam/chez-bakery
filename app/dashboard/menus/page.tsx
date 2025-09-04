@@ -2,85 +2,96 @@
 
 import { fetchAPI } from '@/lib/apiClient';
 import { Menu } from '@/lib/interface';
-import { groupMenuByCategory } from '@/lib/utils';
+import { GroupedMenu, groupMenuByCategory } from '@/lib/utils';
 
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CircleStackIcon } from '@heroicons/react/24/outline';
 
 import Link from 'next/link';
 
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import SectionTitle from '@/components/sections/titles/SectionTitle';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import Image from 'next/image';
 
 const loadMenus = [1, 2, 3, 4, 5];
 
 export default function Menus() {
-  const [storage, setStorage] = useState<Record<string, Menu[] | string>[]>([]);
+  const [storage, setStorage] = useState<GroupedMenu[]>([]);
 
   const [selectedMenus, setSelectedMenus] = useState<Menu[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const load = async () => {
-    const data = await fetchAPI('/api/menus', 'GET');
-
-    const categoryMenu = groupMenuByCategory(data.categories, data.menus);
-
-    console.log(categoryMenu);
-
-    setStorage(categoryMenu);
-    setSelectedMenus(
-      categoryMenu.length === 0 ? [] : (categoryMenu[0].categoryMenu as Menu[])
-    );
-    setIsLoading(false);
-  };
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const category = e.currentTarget.id;
-
-    for (const s of storage) {
-      if (s.categoryName === category) {
-        setSelectedMenus(s.categoryMenu as Menu[]);
-        break;
-      }
+  const handleClick = (id: string) => {
+    const selected = storage.find((s) => s.categoryId === id);
+    if (selected) {
+      setSelectedMenus(selected.categoryMenu as Menu[]);
     }
   };
 
+  const isActive = (categoryId: string): boolean => {
+    return (
+      (selectedMenus.length ===
+        storage.find((s) => s.categoryId === categoryId)?.categoryMenu.length &&
+        categoryId === 'all') ||
+      (storage.find((s) => s.categoryId === categoryId)?.categoryMenu ===
+        selectedMenus &&
+        categoryId !== 'all')
+    );
+  };
+
   useEffect(() => {
+    setIsLoading(true);
+
+    const load = async () => {
+      const data = await fetchAPI('/api/menus', 'GET');
+
+      const categoryMenu = groupMenuByCategory(data.categories, data.menus);
+
+      const fixedMenu: GroupedMenu = {
+        categoryId: 'all',
+        categoryName: 'All',
+        categoryImage: '',
+        categoryMenu: data.menus,
+      };
+
+      setStorage([fixedMenu, ...categoryMenu]);
+      setSelectedMenus(fixedMenu.categoryMenu);
+
+      setIsLoading(false);
+    };
+
     load();
   }, []);
 
   return (
     <>
-      <div className='flex justify-between items-center'>
-        <div>
-          <h1 className='font-semibold'>Menu</h1>
-          <p className='text-sm font-quicksand'>
-            List of all of your bakery&apos;s menu here.
-          </p>
-        </div>
-
-        <Link
-          href='/dashboard/menus/add'
-          className='block rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 font-quicksand'
-        >
-          Add Menu
-        </Link>
-      </div>
+      <SectionTitle
+        title='Menus'
+        description='A list of all the menus in your database.'
+      >
+        <Button asChild>
+          <Link href={'/dashboard/menus/add'} className='font-quicksand'>
+            Add Menu
+          </Link>
+        </Button>
+      </SectionTitle>
 
       {/* Filter condition */}
       <div className='flex my-5'>
-        {storage.map((s: Record<string, Menu[] | string>, index) => (
-          <button
+        {storage.map((s, index) => (
+          <Badge
             key={index}
-            id={s.categoryName as string}
-            className='bg-primary px-4 py-2 mr-3 rounded-full text-xs text-white font-semibold hover:cursor-pointer hover:bg-[#5d8650] font-quicksand'
-            onClick={handleClick}
+            id={s.categoryId}
+            variant={isActive(s.categoryId) ? 'default' : 'outline'}
+            className='px-4 py-2 mr-3 rounded-full text-xs font-semibold hover:cursor-pointer font-quicksand'
+            onClick={() => handleClick(s.categoryId)}
           >
             {s.categoryName as string}
-          </button>
+          </Badge>
         ))}
       </div>
 
@@ -105,16 +116,16 @@ export default function Menus() {
           ? loadMenus.map((_, index) => (
               <li key={index} className='relative'>
                 <div className='group overflow-hidden rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2'>
-                  <Skeleton width={300} height={150} />
+                  <Skeleton className='w-[300px] h-[150px]' />
                 </div>
                 <p className='pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900'>
-                  <Skeleton width={100} />
+                  <Skeleton className='w-[100px]' />
                 </p>
                 <p className='pointer-events-none block text-xs font-medium text-gray-500'>
-                  <Skeleton width={75} />
+                  <Skeleton className='w-[75px]' />
                 </p>
                 <p className='pointer-events-none block text-sm font-medium text-gray-500'>
-                  <Skeleton width={50} />
+                  <Skeleton className='w-[50px]' />
                 </p>
               </li>
             ))

@@ -1,5 +1,6 @@
 'use client';
 
+import SectionTitle from '@/components/sections/titles/SectionTitle';
 import { fetchAPI } from '@/lib/apiClient';
 import { validateCategoryForm } from '@/lib/formValidation';
 import clsx from 'clsx';
@@ -39,14 +40,10 @@ export default function AddCategory() {
   return (
     <>
       <div>
-        <div className='px-4 sm:px-0'>
-          <h3 className='text-base/7 font-semibold text-gray-900'>
-            Category Information
-          </h3>
-          <p className='mt-1 max-w-2xl text-sm/6 text-gray-500 font-quicksand'>
-            Create new category information.
-          </p>
-        </div>
+        <SectionTitle
+          title='Add New Category'
+          description='Create a new category and add it to your database.'
+        />
         <div className='mt-6 border-t border-gray-100'>
           <form onSubmit={handleSubmit} className='font-quicksand'>
             <dl className='divide-y divide-gray-100'>

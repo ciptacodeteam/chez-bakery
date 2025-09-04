@@ -1,5 +1,6 @@
 'use client';
 
+import SectionTitle from '@/components/sections/titles/SectionTitle';
 import { fetchAPI } from '@/lib/apiClient';
 import { validateMenuForm } from '@/lib/formValidation';
 import { Category } from '@/lib/interface';
@@ -66,14 +67,10 @@ export default function AddMenu() {
   return (
     <>
       <div>
-        <div className='px-4 sm:px-0'>
-          <h3 className='text-base/7 font-semibold text-gray-900'>
-            Menu Information
-          </h3>
-          <p className='mt-1 max-w-2xl text-sm/6 text-gray-500 font-quicksand'>
-            Create new menu information.
-          </p>
-        </div>
+        <SectionTitle
+          title='Add New Menu'
+          description='Create a new menu and add it to your database.'
+        />
         <div className='mt-6 border-t border-gray-100'>
           <form onSubmit={handleSubmit} className='font-quicksand'>
             <dl className='divide-y divide-gray-100'>

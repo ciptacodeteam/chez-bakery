@@ -20,6 +20,7 @@ import { usePathname } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
 
 import chezLogo from '@/public/images/chez.png';
+import AppLogo from './brands/AppLogo';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -107,8 +108,8 @@ export default function Example() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4'>
             <div className='my-5'>
-              <div className='flex h-16 items-center'>
-                <Image src={chezLogo} alt='logo' />
+              <div className='flex h-16 items-center justify-center'>
+                <AppLogo className='max-w-[200px]' />
               </div>
             </div>
             <nav className='flex flex-1 flex-col'>
@@ -117,7 +118,8 @@ export default function Example() {
                   <ul role='list' className='-mx-2 space-y-1'>
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
+                          prefetch
                           href={item.href}
                           className={classNames(
                             item.current
@@ -136,7 +138,7 @@ export default function Example() {
                             )}
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

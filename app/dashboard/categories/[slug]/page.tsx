@@ -10,9 +10,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import Image from 'next/image';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CategoryDetails() {
   const path = usePathname();
@@ -103,7 +102,7 @@ export default function CategoryDetails() {
                 </dt>
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
-                    <Skeleton width={175} />
+                    <Skeleton className='w-[175px]' />
                   ) : (
                     <input
                       id='categoryName'
@@ -137,8 +136,8 @@ export default function CategoryDetails() {
                 <dd className='mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0'>
                   {isLoading ? (
                     <div>
-                      <Skeleton width={200} height={200} />
-                      <Skeleton width={175} className='mt-4' />
+                      <Skeleton className='w-[200px] h-[200px]' />
+                      <Skeleton className='w-[175px] mt-4' />
                     </div>
                   ) : (
                     <div>

@@ -47,6 +47,8 @@ export default function MenuPage() {
     load();
   }, []);
 
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className='tracking-wide'>
       {/* Hero */}

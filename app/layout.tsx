@@ -5,6 +5,7 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { ClerkProvider } from '@clerk/nextjs';
 import MainProvider from '@/providers/MainProvider';
+import Whatsapp from '@/components/whatsapp';
 
 const libre = Libre_Baskerville({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
             <main>{children}</main>
             <Footer />
           </MainProvider>
+          <Whatsapp />
         </body>
       </html>
     </ClerkProvider>

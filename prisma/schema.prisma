@@ -32,7 +32,7 @@ model Menus {
   menuDescription     String
   price               Int
   menuImage           String
-  isFavourite         Boolean       @default(false)
+  isFavourite         Boolean       
   
   categoryId          String
   category            Categories    @relation(fields: [categoryId], references: [id])

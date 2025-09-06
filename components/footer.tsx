@@ -1,16 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-
-import FooterImage from '@/public/images/footer.jpg';
-
-import { ClockIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import { motion, useInView } from 'framer-motion';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
-import AppLogo from './brands/AppLogo';
-import { navigation } from './navigation';
+
+import logowhite from '@/public/svg/logowhite.svg'
+import halal from '@/public/svg/halal.svg'
+
+import Link from 'next/link';
 
 export default function Footer() {
   const path = usePathname();
@@ -24,7 +22,87 @@ export default function Footer() {
 
   return (
     <footer ref={ref}>
-      <motion.div
+      <div className='bg-primary py-5'>
+        <div className='max-w-7xl mx-auto py-4'>
+          <div className='grid grid-cols-4 gap-10 mt-10'>
+            <div>
+              <div>
+                <Link
+                  href={"/"}
+                >
+                  <Image
+                    src={logowhite}
+                    alt=''
+                    className='w-44'
+                  />
+                </Link>
+              </div>
+              <div>
+                <h1 className='text-white font-quicksand font-semibold mt-10'>ADDRESS</h1>
+                <p className='text-white font-quicksand mt-2'>Jl. Williem Iskandar No. 73, Kota Medan, Sumatera Utara 20221.</p>
+              </div>
+            </div>
+            <div>
+              <div className='mb-12'>
+                <h1 className='text-white font-quicksand font-semibold'>OPENING HOURS</h1>
+                <p className='text-white font-quicksand mt-2'>Everyday 8AM - 10PM</p>
+              </div>
+              <div>
+                <h1 className='text-white font-quicksand font-semibold mb-2'>CONTACT</h1>
+                <div className='flex items-center'>
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" className="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>
+                  </div>
+                  <p className='text-white font-quicksand ms-2'>+62 811 6162 1131</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h1 className='text-white font-quicksand font-semibold'>SITEMAP</h1>
+              <div className='text-white font-quicksand mt-2'>
+                <ul className='space-y-3'>
+                  <li><Link href={"/"}>Home</Link></li>
+                  <li><Link href={"/"}>Chez's Menu</Link></li>
+                  <li><Link href={"/"}>Location</Link></li>
+                  <li><Link href={"/"}>Social Media</Link></li>
+                  <li><Link href={"/"}>Contact Us</Link></li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <h1 className='text-white font-quicksand font-semibold mb-2'>SOCIAL</h1>
+              <div>
+                <Link
+                  href={"https://www.instagram.com/chezbakery_id"}
+                >
+                  <div className='flex items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+                    <p className='text-white font-quicksand ms-2'>@chezbakery_id</p>
+                  </div>
+                </Link>
+                <div className='mt-12'>
+                  <h1 className='text-white font-quicksand font-semibold mb-2'>HALAL CERTIFIED</h1>
+                  <div className='flex items-center'>
+                    <Image
+                      src={halal}
+                      alt=''
+                      className='w-7'
+                    />
+                    <p className='font-quicksand text-white ms-3'>ID12110026732710825</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-white font-quicksand text-sm mt-16 text-center">
+            ©{new Date().getFullYear()} Chez Bakery & Cafe. All Rights Reserved. Designed & Developed by <span><Link href={"https://ciptacode.id/"}>Ciptacode</Link></span>
+          </p>
+        </div>
+      </div>
+      {/* <motion.div
         className='mt-20 mb-10 md:max-w-11/12 px-5 md:px-0 mx-auto text-primary grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-14 items-center'
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -169,7 +247,7 @@ export default function Footer() {
             </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </footer>
   );
 }

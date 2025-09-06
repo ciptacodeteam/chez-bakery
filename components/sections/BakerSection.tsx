@@ -2,8 +2,6 @@ import FounderImage from '@/public/images/founder.jpeg';
 import { IconArrowRight } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '../ui/button';
-import AppLogo from '../brands/AppLogo';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -14,20 +12,17 @@ const BakerSection = () => {
   return (
     <section ref={ref}>
       <motion.div
-        className='mt-0 mb-24 md:my-24 md:max-w-11/12 px-5 md:px-0 w-full mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-20 md:gap-10'
+        className='mt-0 mb-24 md:my-32 md:max-w-7xl px-5 md:px-0 w-full mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-20 md:gap-10'
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
         <motion.div
-          className='flex flex-col col-span-2 order-1 h-full justify-between items-start md:order-2 '
+          className='flex flex-col justify-center col-span-2 order-1 h-full md:order-2 '
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
         >
-          <div className='flex w-full justify-end px-5 md:px-10'>
-            <AppLogo clickable={false} />
-          </div>
           <motion.div
             className='px-5 md:px-10'
             initial={{ opacity: 0, y: 30 }}
@@ -35,7 +30,7 @@ const BakerSection = () => {
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             <motion.h1
-              className='text-3xl md:text-5xl text-primary font-bold mb-4 tracking-tight'
+              className='text-3xl md:text-6xl text-primary font-bold mb-4 tracking-tight'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -43,34 +38,28 @@ const BakerSection = () => {
               Meet the Baker
             </motion.h1>
             <motion.p
-              className='mb-8 mt-2 font-quicksand text-lg text-muted-foreground leading-relaxed'
+              className='mb-8 font-quicksand text-lg text-muted-foreground leading-relaxed'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              Discover the passion and artistry behind every loaf. Our founder
-              blends tradition with innovation to create unforgettable flavors
-              and experiences.
+              Behind every loaf lies a story of patience, dedication, and creativity. Our founder carefully blends the warmth of time-honored traditions with the excitement of new ideas, crafting breads that awaken the senses and nourish the soul. Each loaf begins with the finest ingredients, patiently prepared, folded, and baked to perfection. From the golden crust to the soft, fragrant interior, every bite tells a tale of passion, skill, and unwavering commitment. More than just bread, each creation invites you into a journey,where flavors linger, memories are made, and moments of simple joy are savored again and again. Step into our world, and discover how the art of baking transforms ordinary ingredients into experiences meant to be cherished.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.5 }}
             >
-              <Button
-                asChild
-                variant='outline'
-                className='rounded-full border-primary font-quicksand group !px-6 transition-all group bg-transparent hover:bg-primary hover:text-white'
-                size='lg'
+              <button
+                className='border border-primary text-primary mt-5 md:mt-0 font-quicksand group px-6 py-2 hover:bg-primary hover:text-white group-hover:translate-x-1 transition-all duration-200'
               >
-                <Link href='/contact' className='flex items-center gap-2'>
-                  <span className='font-semibold'>Learn more about us</span>
+                <Link href='/menus' className='flex items-center gap-2'>
+                  Meet Us at Chez Bakery
                   <IconArrowRight
                     size={16}
-                    className='group-hover:translate-x-1 transition-all duration-200'
                   />
                 </Link>
-              </Button>
+              </button>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -89,9 +78,9 @@ const BakerSection = () => {
             <Image
               src={FounderImage}
               alt='founder'
-              width={400}
-              height={400}
-              className='rounded-2xl shadow-2xl border-4 border-primary/20 object-cover'
+              width={380}
+              height={380}
+              className='rounded-2xl object-cover'
             />
             <motion.div
               className='absolute -bottom-6 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-2 rounded-full font-quicksand shadow-lg text-base text-center max-w-[320px] w-full'

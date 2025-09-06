@@ -1,28 +1,28 @@
 'use client';
 
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/lib/utils';
-import { IconArrowRight, IconLogin2 } from '@tabler/icons-react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import AppLogo from './brands/AppLogo';
-import { Button } from './ui/button';
+import Image from 'next/image';
+import logo from "@/public/svg/logo.svg"
+import logowhite from "@/public/svg/logowhite.svg"
+
+import img2 from "@/public/images/img2.webp"
+import img3 from "@/public/images/img3.webp"
+import img4 from "@/public/images/img4.webp"
+import img5 from "@/public/images/img5.webp"
 
 export const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Menu', href: '/menus' },
-  { name: 'Contact Us', href: '#' },
+  { name: "Chez's Menu", href: '/menus' },
+  { name: 'Location', href: 'https://share.google/le4eFOa8gvFFW4y0j' },
+  { name: 'Social Media', href: 'https://www.instagram.com/chezbakery_id/' },
+  { name: 'Contact Us', href: '/contact-us' },
+  { name: 'Login', href: '/sign-in' },
 ];
+
 
 export default function Navigation() {
   const path = usePathname();
@@ -32,21 +32,123 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    const storedScrolled = localStorage.getItem("isScrolled");
+    if (storedScrolled === "true") {
+      setIsScrolled(true);
+    }
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+        localStorage.setItem("isScrolled", "true");
+      } else {
+        setIsScrolled(false);
+        localStorage.setItem("isScrolled", "false");
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   if (isDashboard || isSignIn) return null;
 
   return (
     <>
-      <motion.header
+      <section>
+        <div
+          className={`fixed z-50 w-full left-0 right-0 transition-all duration-300 py-6
+          ${isOpen ? "bg-transparent" : isScrolled ? "bg-white" : "bg-transparent"}`}
+        >
+          <div className="flex justify-between items-center max-w-7xl mx-auto">
+            {/* Logo */}
+            <Link
+              href={"/"}>
+              <Image
+                alt="logo"
+                src={isScrolled || isOpen ? logo : logowhite}
+                className="w-32 transition-all duration-300"
+              />
+            </Link>
+
+            {/* Menu Icon */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle Menu"
+              className="relative w-8 h-8 flex items-center justify-center cursor-pointer"
+            >
+              <span
+                className={`absolute h-0.5 w-6 rounded-sm transition-all duration-300 ${isScrolled || isOpen ? "bg-primary" : "bg-white"
+                  } ${isOpen ? "rotate-45" : "-translate-y-2"}`}
+              ></span>
+              <span
+                className={`absolute h-0.5 w-6 rounded-sm transition-all duration-300 ${isScrolled || isOpen ? "bg-primary" : "bg-white"
+                  } ${isOpen ? "opacity-0" : "opacity-100"}`}
+              ></span>
+              <span
+                className={`absolute h-0.5 w-6 rounded-sm transition-all duration-300 ${isScrolled || isOpen ? "bg-primary" : "bg-white"
+                  } ${isOpen ? "-rotate-45" : "translate-y-2"}`}
+              ></span>
+            </button>
+          </div>
+        </div>
+
+        {/* Fullscreen Menu Overlay */}
+        <div
+          className={`fixed inset-0 z-40 flex transition-opacity duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
+        >
+          <div className="bg-white text-black flex flex-col w-2/5">
+            <div className="ml-24 h-screen flex flex-col justify-end">
+              <ul className="space-y-6 text-2xl font-medium font-quicksand mb-20">
+                {navigation.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      href={item.href}
+                      className="hover:text-yellow-500 transition-colors text-primary"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="flex-1 grid grid-cols-2 w-3/5">
+            <div className="relative w-full h-full">
+              <Image alt="img2" src={img2} fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-full">
+              <Image alt="img3" src={img3} fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-full">
+              <Image alt="img4" src={img4} fill className="object-cover" />
+            </div>
+            <div className="relative w-full h-full">
+              <Image alt="img5" src={img5} fill className="object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* <motion.header
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -105,10 +207,10 @@ export default function Navigation() {
             </Button>
           </div>
         </nav>
-      </motion.header>
+      </motion.header> */}
 
       {/* Mobile */}
-      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+      {/* <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetContent
           side='left'
           className='lg:hidden bg-black font-quicksand w-screen'
@@ -156,7 +258,7 @@ export default function Navigation() {
             </div>
           </div>
         </SheetContent>
-      </Sheet>
+      </Sheet> */}
     </>
   );
 }

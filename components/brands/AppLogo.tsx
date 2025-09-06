@@ -23,7 +23,7 @@ const AppLogo = ({ clickable = true, className, ...props }: Props) => {
         >
           <Image
             src={SiteLogo}
-            alt='Logo Tedz Production'
+            alt='chez'
             width={150}
             height={150}
             priority
@@ -37,7 +37,7 @@ const AppLogo = ({ clickable = true, className, ...props }: Props) => {
         >
           <Image
             src={SiteLogo}
-            alt='Logo Tedz Production'
+            alt='chez'
             width={150}
             height={150}
             priority

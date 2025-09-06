@@ -45,7 +45,7 @@ const CTASection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <button className="border border-white/50 text-white mt-5 md:mt-0 font-quicksand group px-6 py-2 hover:border-white group-hover:translate-x-1 transition-all duration-200">
-                <Link href="/menus" className="flex items-center gap-2">
+                <Link href="https://wa.me/6281161621131" className="flex items-center gap-2">
                   Order now
                   <IconArrowRight size={16} />
                 </Link>

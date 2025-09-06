@@ -11,7 +11,7 @@ export default function ContactUs() {
                 style={{ backgroundPosition: "50% 20%" }}
             >
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-black/70"></div>
 
                 {/* Content */}
                 <motion.div
@@ -27,13 +27,11 @@ export default function ContactUs() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="flex items-center gap-4 lg:w-full lg:max-w-md mb-4"
+                        className="items-center lg:w-full lg:max-w-md mb-4"
                     >
-                        <div className="flex-1 border-t border-white"></div>
-                        <h1 className="lg:text-lg text-white whitespace-nowrap font-quicksand">
+                        <h1 className="lg:text-lg text-white text-center font-quicksand">
                             CONTACT US
                         </h1>
-                        <div className="flex-1 border-t border-white"></div>
                     </motion.div>
 
                     {/* Subtitle */}
@@ -44,7 +42,7 @@ export default function ContactUs() {
                         viewport={{ once: true }}
                         className="text-white lg:text-5xl text-3xl text-center lg:w-2/5"
                     >
-                        CONNECT WITH US: HOW TO REACH CHEZ
+                        Connect With Us: How to Reach Chez
                     </motion.h2>
                 </motion.div>
             </div>

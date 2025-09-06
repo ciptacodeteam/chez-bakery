@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && ts-node scripts/generate-sitemap.ts",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,6 +31,7 @@
     "prisma": "^6.14.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "sitemap": "^8.0.0",
     "sonner": "^2.0.7",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1"

@@ -53,7 +53,7 @@ const BakerSection = () => {
               <button
                 className='border border-primary text-primary mt-5 md:mt-0 font-quicksand group px-6 py-2 hover:bg-primary hover:text-white group-hover:translate-x-1 transition-all duration-200'
               >
-                <Link href='/menus' className='flex items-center gap-2'>
+                <Link href='https://share.google/le4eFOa8gvFFW4y0j' className='flex items-center gap-2'>
                   Meet Us at Chez Bakery
                   <IconArrowRight
                     size={16}

@@ -33,7 +33,7 @@ const MomentHighlightSection = () => {
     <section ref={ref}>
       <div className="grid lg:grid-cols-2">
         {/* Grid pertama */}
-        <div className="grid lg:grid-cols-3 lg:grid-rows-2 h-[450px]">
+        <div className="grid lg:grid-cols-3 lg:grid-rows-2 lg:h-[450px] h-[1000px]">
           {[img8, img9, img10, img11].map((src, i) => (
             <motion.div
               key={i}

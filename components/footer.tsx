@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
 
@@ -16,15 +15,14 @@ export default function Footer() {
   const isSignIn = path.startsWith('/sign-in');
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   if (isDashboard || isSignIn) return null;
 
   return (
     <footer ref={ref}>
       <div className='bg-primary py-5'>
-        <div className='max-w-7xl mx-auto py-4'>
-          <div className='grid grid-cols-4 gap-10 mt-10'>
+        <div className='lg:max-w-7xl max-w-11/12 mx-auto py-4'>
+          <div className='lg:grid lg:grid-cols-4 gap-10 mt-10'>
             <div>
               <div>
                 <Link
@@ -33,18 +31,18 @@ export default function Footer() {
                   <Image
                     src={logowhite}
                     alt=''
-                    className='w-44'
+                    className='lg:w-44 w-38'
                   />
                 </Link>
               </div>
               <div>
-                <h1 className='text-white font-quicksand font-semibold mt-10'>ADDRESS</h1>
+                <h1 className='text-white font-quicksand font-semibold lg:mt-10 mt-12'>ADDRESS</h1>
                 <p className='text-white font-quicksand mt-2'>Jl. Williem Iskandar No. 73, Kota Medan, Sumatera Utara 20221.</p>
               </div>
             </div>
             <div>
               <div className='mb-12'>
-                <h1 className='text-white font-quicksand font-semibold'>OPENING HOURS</h1>
+                <h1 className='text-white font-quicksand font-semibold mt-10 lg:mt-0'>OPENING HOURS</h1>
                 <p className='text-white font-quicksand mt-2'>Everyday 8AM - 10PM</p>
               </div>
               <div>
@@ -57,7 +55,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className='mt-12 lg:mt-0'>
               <h1 className='text-white font-quicksand font-semibold'>SITEMAP</h1>
               <div className='text-white font-quicksand mt-2'>
                 <ul className='space-y-3'>
@@ -69,7 +67,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div>
+            <div className='mt-12 lg:mt-0'>
               <h1 className='text-white font-quicksand font-semibold mb-2'>SOCIAL</h1>
               <div>
                 <Link
@@ -96,9 +94,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
-          <p className="text-white font-quicksand text-sm mt-16 text-center">
-            ©{new Date().getFullYear()} Chez Bakery & Cafe. All Rights Reserved. Designed & Developed by <span><Link href={"https://ciptacode.id/"}>Ciptacode</Link></span>
+        <div className='max-w-11/12 mx-auto'>
+          <p className="text-white font-quicksand text-sm lg:mt-16 mt-10 text-center lg:flex lg:justify-center">
+            ©{new Date().getFullYear()} Chez Bakery & Cafe. All Rights Reserved. <span className='hidden lg:block'>Designed & Developed by <span><Link href={"https://ciptacode.id/"}>Ciptacode</Link></span></span>
           </p>
         </div>
       </div>

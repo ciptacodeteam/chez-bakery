@@ -12,7 +12,7 @@ const BakerSection = () => {
   return (
     <section ref={ref}>
       <motion.div
-        className='mt-0 mb-24 md:my-32 md:max-w-7xl px-5 md:px-0 w-full mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-20 md:gap-10'
+        className='mt-0 mb-24 md:my-32 lg:max-w-7xl lg:px-5 md:px-0 w-full max-w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-y-20 md:gap-10'
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -24,13 +24,13 @@ const BakerSection = () => {
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
         >
           <motion.div
-            className='px-5 md:px-10'
+            className='lg:px-5 md:px-10'
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             <motion.h1
-              className='text-3xl md:text-6xl text-primary font-bold mb-4 tracking-tight'
+              className='mt-18 lg:mt-0 text-3xl md:text-6xl text-primary font-bold mb-4 tracking-tight'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -38,7 +38,7 @@ const BakerSection = () => {
               Meet the Baker
             </motion.h1>
             <motion.p
-              className='mb-8 font-quicksand text-lg text-muted-foreground leading-relaxed'
+              className='lg:mb-8 mb-4 font-quicksand text-lg text-muted-foreground leading-relaxed'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
